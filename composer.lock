@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "c112ae6fc78bbb569e04c025645d63a1",
-    "content-hash": "0cae3a4dd80bc4da5d85ed25111be85d",
+    "hash": "08f41fe776a428ab80a8e61487d02ccd",
+    "content-hash": "91afd46c920f1ef6303adcd2aeaaae93",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -888,6 +888,108 @@
                 "rest"
             ],
             "time": "2016-10-17 18:31:11"
+        },
+        {
+            "name": "gregwar/captcha",
+            "version": "v1.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Gregwar/Captcha.git",
+                "reference": "b4f22bc4794b652fccefae5a5be9565305e11572"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Gregwar/Captcha/zipball/b4f22bc4794b652fccefae5a5be9565305e11572",
+                "reference": "b4f22bc4794b652fccefae5a5be9565305e11572",
+                "shasum": ""
+            },
+            "require": {
+                "ext-gd": "*",
+                "php": ">=5.3.0"
+            },
+            "type": "captcha",
+            "autoload": {
+                "psr-4": {
+                    "Gregwar\\Captcha\\": "/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Grégoire Passault",
+                    "email": "g.passault@gmail.com",
+                    "homepage": "http://www.gregwar.com/"
+                },
+                {
+                    "name": "Jeremy Livingston",
+                    "email": "jeremy.j.livingston@gmail.com"
+                }
+            ],
+            "description": "Captcha generator",
+            "homepage": "https://github.com/Gregwar/Captcha",
+            "keywords": [
+                "bot",
+                "captcha",
+                "spam"
+            ],
+            "time": "2017-09-27 06:58:14"
+        },
+        {
+            "name": "gregwar/captcha-bundle",
+            "version": "v2.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Gregwar/CaptchaBundle.git",
+                "reference": "f6c45045f020e2be45b325bced6c36ce51d8075f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Gregwar/CaptchaBundle/zipball/f6c45045f020e2be45b325bced6c36ce51d8075f",
+                "reference": "f6c45045f020e2be45b325bced6c36ce51d8075f",
+                "shasum": ""
+            },
+            "require": {
+                "gregwar/captcha": "~1.1",
+                "php": ">=5.3.9",
+                "symfony/form": "~2.1|~3.0",
+                "symfony/framework-bundle": "~2.1|~3.0"
+            },
+            "type": "captcha-bundle",
+            "autoload": {
+                "psr-4": {
+                    "Gregwar\\CaptchaBundle\\": "/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Grégoire Passault",
+                    "email": "g.passault@gmail.com",
+                    "homepage": "http://www.gregwar.com/"
+                },
+                {
+                    "name": "Jeremy Livingston",
+                    "email": "jeremy.j.livingston@gmail.com"
+                }
+            ],
+            "description": "Captcha bundle",
+            "homepage": "https://github.com/Gregwar/CaptchaBundle",
+            "keywords": [
+                "Symfony2",
+                "bot",
+                "captcha",
+                "code",
+                "security",
+                "spam",
+                "visual"
+            ],
+            "time": "2016-09-21 08:36:55"
         },
         {
             "name": "incenteev/composer-parameter-handler",
@@ -2191,6 +2293,113 @@
                 "framework"
             ],
             "time": "2017-11-16 18:15:01"
+        },
+        {
+            "name": "twbs/bootstrap",
+            "version": "v3.3.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/twbs/bootstrap.git",
+                "reference": "0b9c4a4007c44201dce9a6cc1a38407005c26c86"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/0b9c4a4007c44201dce9a6cc1a38407005c26c86",
+                "reference": "0b9c4a4007c44201dce9a6cc1a38407005c26c86",
+                "shasum": ""
+            },
+            "replace": {
+                "twitter/bootstrap": "self.version"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.3.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jacob Thornton",
+                    "email": "jacobthornton@gmail.com"
+                },
+                {
+                    "name": "Mark Otto",
+                    "email": "markdotto@gmail.com"
+                }
+            ],
+            "description": "The most popular front-end framework for developing responsive, mobile first projects on the web.",
+            "homepage": "http://getbootstrap.com",
+            "keywords": [
+                "JS",
+                "css",
+                "framework",
+                "front-end",
+                "less",
+                "mobile-first",
+                "responsive",
+                "web"
+            ],
+            "time": "2016-07-25 15:51:55"
+        },
+        {
+            "name": "twig/extensions",
+            "version": "v1.5.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/twigphp/Twig-extensions.git",
+                "reference": "d188c76168b853481cc75879ea045bf93d718e9c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/twigphp/Twig-extensions/zipball/d188c76168b853481cc75879ea045bf93d718e9c",
+                "reference": "d188c76168b853481cc75879ea045bf93d718e9c",
+                "shasum": ""
+            },
+            "require": {
+                "twig/twig": "~1.27|~2.0"
+            },
+            "require-dev": {
+                "symfony/phpunit-bridge": "~3.3@dev",
+                "symfony/translation": "~2.3|~3.0"
+            },
+            "suggest": {
+                "symfony/translation": "Allow the time_diff output to be translated"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.5-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Twig_Extensions_": "lib/"
+                },
+                "psr-4": {
+                    "Twig\\Extensions\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                }
+            ],
+            "description": "Common additional features for Twig that do not directly belong in core",
+            "homepage": "http://twig.sensiolabs.org/doc/extensions/index.html",
+            "keywords": [
+                "i18n",
+                "text"
+            ],
+            "time": "2017-06-08 18:19:53"
         },
         {
             "name": "twig/twig",
