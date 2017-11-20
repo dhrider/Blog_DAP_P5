@@ -2,12 +2,114 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <title>{% block title %}Philippe's Blog{% endblock %}</title>
+        {% block stylesheets %}
+            <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+            <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/themes/base/jquery-ui.css">
+            <link rel="stylesheet" href="{{ asset('css/freelancer.css') }}">
+            <link rel="stylesheet" href="{{ asset('css/font-awesome.css') }}">
+            <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+            <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+        {% endblock %}
+
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
+
     <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        {% block body %}
+            <!-- Navigation -->
+            <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
+                <div class="container">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header page-scroll">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+                        </button>
+                        <a class="navbar-brand" href="#">MY PERSONNAL BLOG</a>
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="hidden">
+                                <a href="#"></a>
+                            </li>
+                            <li class="page-scroll">
+                                <a href="#">Home</a>
+                            </li>
+                            <li class="page-scroll dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog Posts</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">View Posts List</a></li>
+                                    <li><a href="#">New Post</a></li>
+                                </ul>
+                            </li>
+                            <li class="page-scroll">
+                                <a href="#">Cv</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /.navbar-collapse -->
+                </div>
+                <!-- /.container-fluid -->
+            </nav>
+
+            <!-- Header -->
+            <header>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <img class="img-responsive" src="{{ asset('images/moi_portrait.jpeg') }}" alt="">
+                            <div class="intro-text">
+                                <span class="name">PHILIPPE BORDMANN</span>
+                                <hr class="star-light">
+                                <span class="skills">Web Developer / Integrater - Symfony - PHP - JS/JQuery - HTML5/CSS3</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Footer -->
+            <footer class="text-center">
+                <div class="footer-above">
+                    <div class="container">
+                        <div class="row">
+                            <div class="footer-col col-md-4">
+                                <h3>Around the Web</h3>
+                                <ul class="list-inline">
+                                    <li>
+                                        <a href="https://www.facebook.com/philippe.bordmann" class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.linkedin.com/in/philippe-bordmann-3b09bb9a/" class="btn-social btn-outline"><i class="fa fa-fw fa-linkedin"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="footer-col col-md-8">
+                                <h3>Contact Me</h3>
+                                <p>A contact form will be displayed here</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-below">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                Copyright &copy; Philippe Bordmann Blog 2017
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        {% endblock %}
+
+        {% block javascripts %}
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+            <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+            <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js"></script>
+            <script src="{{ asset('js/freelancer.js') }}"></script>
+        {% endblock %}
     </body>
 </html>
