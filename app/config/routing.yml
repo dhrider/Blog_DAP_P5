@@ -2,6 +2,10 @@ home:
     path: /
     defaults: {_controller: App\Controller\HomeController:homeAction}
 
+contact:
+    path: /contact
+    defaults: {_controller: App\Controller\ContactController:contactAction}
+
 gregwar_captcha_routing:
     resource: "@GregwarCaptchaBundle/Resources/config/routing/routing.yml"
 
