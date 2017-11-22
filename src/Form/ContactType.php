@@ -29,12 +29,12 @@ class ContactType extends AbstractType
                     'placeholder' => 'Your First Name'
                 )
             ))
-            ->add('name',TextType::class, array(
+            ->add('lastName',TextType::class, array(
                 'label_attr' => array(
                     'class' => 'texteEnBlanc'
                 ),
                 'attr' => array(
-                    'placeholder' => 'Your Name'
+                    'placeholder' => 'Your Last Name'
                 )
             ))
             ->add('email', RepeatedType::class, array(
@@ -71,7 +71,7 @@ class ContactType extends AbstractType
                 )
             ))
             ->add('captcha', CaptchaType::class, array(
-                'label' => false,
+                'label' => 'Captcha',
                 'reload' => true,
                 'as_url' => true
             ))

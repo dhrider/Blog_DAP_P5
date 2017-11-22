@@ -1,0 +1,13 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+    </head>
+
+    <body>
+        <h2>Message de {{ contact.firstName }} {{ contact.lastName }}</h2>
+        <h3>Envoyé le : </h3>
+        <p>{{ contact.date | date('d-m-Y') }}</p>
+        <h3>a écrit :</h3>
+        <p>{{ contact.message }}</p>
+    </body>
+</html>
