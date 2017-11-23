@@ -4,6 +4,7 @@ home:
 
 contact:
     path: /contact
+    methods: [ post ]
     defaults: {_controller: App\Controller\ContactController:contactAction}
 
 gregwar_captcha_routing:
