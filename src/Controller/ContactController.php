@@ -29,7 +29,7 @@ class ContactController extends Controller
             $em->persist($contact);
             $em->flush();
 
-            $this->redirectToRoute('contact');
+            $this->redirectToRoute('home');
         }
 
         return $this->render('contactForm.html.twig', array(
