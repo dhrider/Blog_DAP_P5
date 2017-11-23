@@ -1,5 +1,4 @@
 <?php
-// src/Event/ContactEvent.php
 
 namespace App\Event;
 

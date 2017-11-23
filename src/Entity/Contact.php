@@ -1,5 +1,4 @@
 <?php
-// src/Entity/Contact.php
 
 namespace App\Entity;
 
