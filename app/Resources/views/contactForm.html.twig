@@ -2,8 +2,20 @@
     <div class="row">
         <div class="col-md-12">
             <div id="contactForm">
-                {% if app.session.flashbag.has('success') %}
-                    {{ app.session.flashBag.get('success')[0] }}
+                {% if success %}
+                    <div class="messages">
+                        {% for type, messages in app.flashes %}
+                            {% for message in messages %}
+                                {# Bootstrap alert, see http://getbootstrap.com/components/#alerts #}
+                                <div class="alert alert-dismissible alert-{{ type }}" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    {{ message|trans }}
+                                </div>
+                            {% endfor %}
+                        {% endfor %}
+                    </div>
                 {% else %}
                     {{ form(form) }}
                 {% endif %}

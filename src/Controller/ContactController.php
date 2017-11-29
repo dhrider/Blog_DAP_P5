@@ -19,6 +19,8 @@ class ContactController extends Controller
 
         $request = $this->get('request_stack')->getMasterRequest();
 
+        $success = false;
+
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid())
         {
             $contactEvent = new ContactEvent($contact);
@@ -28,14 +30,19 @@ class ContactController extends Controller
             $em->persist($contact);
             $em->flush();
 
+            $success = true;
+
             $session = $this->container->get('session');
             $session->getFlashBag()->set('success', 'You\'re message has been send.');
 
-            $this->redirectToRoute('contact');
+            $this->redirectToRoute('contact',array(
+                'success' => $success
+            ));
         }
 
         return $this->render('contactForm.html.twig', array(
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'success' => $success
         ));
     }
 }

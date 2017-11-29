@@ -11,4 +11,8 @@ class HomeController extends Controller
         return $this->render('base.html.twig');
     }
 
+    public function cvAction()
+    {
+        return $this->render('cv.html.twig');
+    }
 }
