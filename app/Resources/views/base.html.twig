@@ -35,7 +35,7 @@
                                 <a href="#"></a>
                             </li>
                             <li class="page-scroll">
-                                <a href="#">Home</a>
+                                <a id="menuHome" href="{{ path('home') }}">Home</a>
                             </li>
                             <li class="page-scroll dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog Posts</a>
@@ -45,7 +45,7 @@
                                 </ul>
                             </li>
                             <li class="page-scroll">
-                                <a href="#">Cv</a>
+                                <a href="{{ path('cv') }}">Cv</a>
                             </li>
                         </ul>
                     </div>
@@ -59,12 +59,14 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-12">
-                            <img class="img-responsive" src="{{ asset('images/moi_portrait.jpeg') }}" alt="">
-                            <div class="intro-text">
-                                <span class="name">PHILIPPE BORDMANN</span>
-                                <hr class="star-light">
-                                <span class="skills">Web Developer / Integrater - Symfony - PHP - JS/JQuery - HTML5/CSS3</span>
-                            </div>
+                            {% block pageContent %}
+                                <img class="img-responsive" src="{{ asset('images/moi_portrait.jpeg') }}" alt="">
+                                <div class="intro-text">
+                                    <span class="name">PHILIPPE BORDMANN</span>
+                                    <hr class="star-light">
+                                    <span class="skills">Web Developer / Integrater - Symfony - PHP - JS/JQuery - HTML5/CSS3</span>
+                                </div>
+                            {% endblock %}
                         </div>
                     </div>
                 </div>
@@ -88,7 +90,7 @@
                             </div>
                             <div class="footer-col col-md-8">
                                 <h3>Contact Me</h3>
-                                <p>A contact form will be displayed here</p>
+                                {{ render(controller('App\\Controller\\ContactController:contactAction')) }}
                             </div>
                         </div>
                     </div>
@@ -99,7 +101,7 @@
                             <div class="col-lg-12">
                                 Copyright &copy; Philippe Bordmann Blog 2017
                             </div>
-                        </div>
+                         </div>
                     </div>
                 </div>
             </footer>
@@ -110,6 +112,7 @@
             <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
             <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js"></script>
             <script src="{{ asset('js/freelancer.js') }}"></script>
+            <script src="{{ asset('js/script.js') }}"></script>
         {% endblock %}
     </body>
 </html>
