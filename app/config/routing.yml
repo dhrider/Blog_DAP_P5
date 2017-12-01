@@ -6,10 +6,6 @@ contact:
     path: /contact
     defaults: {_controller: App\Controller\ContactController:contactAction}
 
-cv:
-    path: /cv
-    defaults: {_controller: App\Controller\HomeController:cvAction}
-
 gregwar_captcha_routing:
     resource: "@GregwarCaptchaBundle/Resources/config/routing/routing.yml"
 
