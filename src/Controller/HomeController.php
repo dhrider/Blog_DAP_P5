@@ -11,7 +11,7 @@ class HomeController extends Controller
         return $this->render('base.html.twig');
     }
 
-    public function createPostAction()
+    public function newPostAction()
     {
         return $this->render('newPost.html.twig');
     }
