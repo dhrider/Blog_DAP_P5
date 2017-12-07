@@ -10,4 +10,9 @@ class HomeController extends Controller
     {
         return $this->render('base.html.twig');
     }
+
+    public function createPostAction()
+    {
+        return $this->render('newPost.html.twig');
+    }
 }
