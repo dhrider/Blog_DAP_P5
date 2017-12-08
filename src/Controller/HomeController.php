@@ -8,11 +8,19 @@ class HomeController extends Controller
 {
     public function homeAction()
     {
-        return $this->render('base.html.twig');
+        $home = true;
+
+        return $this->render('base.html.twig', array(
+            'home' => $home
+        ));
     }
 
     public function newPostAction()
     {
-        return $this->render('newPost.html.twig');
+        $home = false;
+
+        return $this->render('newPost.html.twig', array(
+            'home' => $home
+        ));
     }
 }

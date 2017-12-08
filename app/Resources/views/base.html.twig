@@ -41,7 +41,7 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog Posts</a>
                                 <ul class="dropdown-menu">
                                     <li><a href="#">View Posts List</a></li>
-                                    <li><a href="{{ path('newPost') }}">New Post</a></li>
+                                    <li><a id="menuNewPost" href="{{ path('newPost') }}">New Post</a></li>
                                 </ul>
                             </li>
                             <li class="page-scroll">
@@ -74,27 +74,29 @@
 
             <!-- Footer -->
             <footer class="text-center">
-                <div class="footer-above">
-                    <div class="container">
-                        <div class="row">
-                            <div class="footer-col col-md-4">
-                                <h3>Around the Web</h3>
-                                <ul class="list-inline">
-                                    <li>
-                                        <a href="https://www.facebook.com/philippe.bordmann" class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="https://www.linkedin.com/in/philippe-bordmann-3b09bb9a/" class="btn-social btn-outline"><i class="fa fa-fw fa-linkedin"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="footer-col col-md-8">
-                                <h3>Contact Me</h3>
-                                {{ render(controller('App\\Controller\\ContactController:contactAction')) }}
+                {% if home %}
+                    <div class="footer-above">
+                        <div class="container">
+                            <div class="row">
+                                <div class="footer-col col-md-4">
+                                    <h3>Around the Web</h3>
+                                    <ul class="list-inline">
+                                        <li>
+                                            <a href="https://www.facebook.com/philippe.bordmann" class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="https://www.linkedin.com/in/philippe-bordmann-3b09bb9a/" class="btn-social btn-outline"><i class="fa fa-fw fa-linkedin"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="footer-col col-md-8">
+                                    <h3>Contact Me</h3>
+                                    {{ render(controller('App\\Controller\\ContactController:contactAction')) }}
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                {% endif %}
                 <div class="footer-below">
                     <div class="container">
                         <div class="row">

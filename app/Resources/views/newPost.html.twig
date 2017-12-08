@@ -1,6 +1,29 @@
 {% extends 'base.html.twig' %}
 
 {% block pageContent %}
-    <h1>Créez votre nouveau POST :</h1>
-
+    <div class="container-fluid col-md-offset-1 col-md-10" id="newPostContent">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Créez un nouveau Post :</h1>
+                <div id="newPostForm">
+                    {% if success %}
+                        <div class="messages">
+                            {% for type, messages in app.flashes %}
+                                {% for message in messages %}
+                                    <div class="alert alert-dismissible alert-{{ type }}" role="alert">
+                                        <button id="closeNewPostMessage" type="button" class="close" data-dismiss="alert" aria-label="Close" >
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        {{ message|trans }}
+                                    </div>
+                                {% endfor %}
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form(form) }}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

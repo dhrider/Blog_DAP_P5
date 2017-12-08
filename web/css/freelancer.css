@@ -83,6 +83,7 @@ header {
   text-align: center;
   background: #18BC9C;
   color: white;
+  height: 800px;
 }
 
 header .container {
