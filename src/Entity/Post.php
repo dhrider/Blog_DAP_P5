@@ -13,7 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Post
 {
     /**
-     * @ORM\Colum(name="id", type="integer")
+     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
@@ -37,7 +37,7 @@ class Post
     ////////////////////////////////////////////////////////////////////////////////
 
     /**
-     * @ORM\Column(name="chapo", type"text")
+     * @ORM\Column(name="chapo", type="text")
      * @Assert\NotBlank()
      */
     private $chapo;
