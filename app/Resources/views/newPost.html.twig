@@ -7,18 +7,7 @@
                 <h1>Créez un nouveau Post :</h1>
                 <div id="newPostForm">
                     {% if success %}
-                        <div class="messages">
-                            {% for type, messages in app.flashes %}
-                                {% for message in messages %}
-                                    <div class="alert alert-dismissible alert-{{ type }}" role="alert">
-                                        <button id="closeNewPostMessage" type="button" class="close" data-dismiss="alert" aria-label="Close" >
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                        {{ message|trans }}
-                                    </div>
-                                {% endfor %}
-                            {% endfor %}
-                        </div>
+                        {% include 'messageFlash.html.twig' with {'buttonId': 'closeNewPostMessage'} %}
                     {% else %}
                         {{ form(form) }}
                     {% endif %}

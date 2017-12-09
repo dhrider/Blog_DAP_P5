@@ -17,7 +17,6 @@ class PostController extends Controller
 
         $form = $this->createForm(PostType::class, $post);
 
-        $home = false;
         $success = false;
 
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid())
@@ -37,7 +36,6 @@ class PostController extends Controller
 
         return $this->render('newPost.html.twig', array(
             'form' => $form->createView(),
-            'home' => $home,
             'success' => $success
         ));
     }

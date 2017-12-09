@@ -43,7 +43,7 @@ class PostType extends AbstractType
            ))
            ->add('Submit',         SubmitType::class, array(
                'attr' => array(
-                   'class' => 'btn-primary'
+                   'class' => 'btn-primary pull-left'
                ),
                'label' => 'Valider'
            ))
