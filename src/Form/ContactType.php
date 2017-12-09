@@ -62,7 +62,7 @@ class ContactType extends AbstractType
                 'attr' => array(
                     'class' => 'btn-primary pull-left'
                 ),
-                'label' => false
+                'label' => 'Envoyer'
             ))
         ;
     }
