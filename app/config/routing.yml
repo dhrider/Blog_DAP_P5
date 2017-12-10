@@ -6,6 +6,10 @@ newPost:
     path: /newPost
     defaults: {_controller: App\Controller\PostController:newPostAction}
 
+listPosts:
+    path: /listPosts
+    defaults: {_controller: App\Controller\PostController:listPostsAction}
+
 contact:
     path: /contact
     defaults: {_controller: App\Controller\ContactController:contactAction}
