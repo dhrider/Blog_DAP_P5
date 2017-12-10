@@ -39,4 +39,9 @@ class PostController extends Controller
             'success' => $success
         ));
     }
+
+    public function listPostsAction()
+    {
+        return $this->render('listPosts.html.twig');
+    }
 }
