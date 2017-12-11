@@ -42,6 +42,12 @@ class PostController extends Controller
 
     public function listPostsAction()
     {
-        return $this->render('listPosts.html.twig');
+        $em = $this->getDoctrine()->getManager();
+
+        $posts = $em->getRepository(Post::class)->findAll();
+
+        return $this->render('listPosts.html.twig', array(
+            'posts' => $posts
+        ));
     }
 }
