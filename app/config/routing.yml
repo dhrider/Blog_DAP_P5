@@ -8,6 +8,7 @@ newPost:
 
 listPosts:
     path: /listPosts
+    methods: [ get, post ]
     defaults: {_controller: App\Controller\PostController:listPostsAction}
 
 contact:

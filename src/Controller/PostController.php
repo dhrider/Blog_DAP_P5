@@ -46,7 +46,7 @@ class PostController extends Controller
 
     /**
      * @param $page
-     * @Route("/listPosts/{page}", name="posts__paginated", defaults={"page" = 1})
+     * @Route("/{page}", name="listPosts_paginated", defaults={"page" = 1})
      * @Template()
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -55,7 +55,7 @@ class PostController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         // gestion de la pagination
-        $adapter = new DoctrineORMAdapter($em->getRepository(Post::class)->findAllPostsDescending());
+        $adapter = new DoctrineORMAdapter($em->getRepository(Post::class)->findAllPostsDescending(), false);
         $pager = new Pagerfanta($adapter);
         $pager->setMaxPerPage(3);
         $pager->setCurrentPage($page);
