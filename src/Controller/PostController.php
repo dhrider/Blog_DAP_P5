@@ -6,6 +6,10 @@ use App\Entity\Post;
 use App\Form\PostType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Pagerfanta\Pagerfanta;
+use Pagerfanta\Adapter\DoctrineORMAdapter;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 class PostController extends Controller
 {
@@ -40,14 +44,24 @@ class PostController extends Controller
         ));
     }
 
-    public function listPostsAction()
+    /**
+     * @param $page
+     * @Route("/listPosts/{page}", name="posts__paginated", defaults={"page" = 1})
+     * @Template()
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function listPostsAction($page = 1)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $posts = $em->getRepository(Post::class)->findAll();
+        // gestion de la pagination
+        $adapter = new DoctrineORMAdapter($em->getRepository(Post::class)->findAllPostsDescending());
+        $pager = new Pagerfanta($adapter);
+        $pager->setMaxPerPage(3);
+        $pager->setCurrentPage($page);
 
         return $this->render('listPosts.html.twig', array(
-            'posts' => $posts
+            'pager' => $pager
         ));
     }
 }
