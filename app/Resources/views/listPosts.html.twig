@@ -12,8 +12,8 @@
             <a href="#" style="color: white;">Lire le post</a>
             <br/>
         </article>
-        <div class="pagerfanta">
-            {{ pagerfanta(pager, 'twitter_bootstrap3', {'routeName' : 'posts_paginated'}) }}
-        </div>
     {% endfor %}
+    <div class="pagerfanta">
+        {{ pagerfanta(pager, 'twitter_bootstrap3', {'routeName' : 'listPosts_paginated'}) }}
+    </div>
 {% endblock %}
