@@ -44,12 +44,6 @@ class PostController extends Controller
         ));
     }
 
-    /**
-     * @param $page
-     * @Route("/{page}", name="listPosts_paginated", defaults={"page" = 1})
-     * @Template()
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
     public function listPostsAction($page = 1)
     {
         $em = $this->getDoctrine()->getManager();
@@ -57,7 +51,7 @@ class PostController extends Controller
         // gestion de la pagination
         $adapter = new DoctrineORMAdapter($em->getRepository(Post::class)->findAllPostsDescending(), false);
         $pager = new Pagerfanta($adapter);
-        $pager->setMaxPerPage(3);
+        $pager->setMaxPerPage(2);
         $pager->setCurrentPage($page);
 
         return $this->render('listPosts.html.twig', array(

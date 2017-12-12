@@ -6,10 +6,11 @@ newPost:
     path: /newPost
     defaults: {_controller: App\Controller\PostController:newPostAction}
 
-listPosts:
-    path: /listPosts
-    methods: [ get, post ]
-    defaults: {_controller: App\Controller\PostController:listPostsAction}
+listPosts_paginated:
+    path: /listPosts/{page}
+    defaults: {_controller: App\Controller\PostController:listPostsAction, page: 1}
+    requirements:
+        page: '\d+'
 
 contact:
     path: /contact
