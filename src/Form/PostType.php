@@ -6,6 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Gregwar\CaptchaBundle\Type\CaptchaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -39,6 +40,14 @@ class PostType extends AbstractType
                'label' => false,
                'attr' => array(
                    'placeholder' => 'Ecrivez votre nom'
+               )
+           ))
+           ->add('captcha', CaptchaType::class, array(
+               'label' => false,
+               'reload' => true,
+               'as_url' => true,
+               'attr' => array(
+                   'placeholder' => 'Ecrivez le captcha ci-dessus'
                )
            ))
            ->add('Submit',         SubmitType::class, array(

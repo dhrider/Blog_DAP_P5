@@ -1,3 +1,10 @@
 article {
-    background-color: #00CC00;
+     background-color: #00CC00;
+ }
+
+a.captcha_reload {
+    color: black;
+}
+a.captcha_reload :hover {
+    background-color: #2C3E50;
 }
