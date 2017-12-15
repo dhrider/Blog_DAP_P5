@@ -51,7 +51,7 @@ class PostController extends Controller
         // gestion de la pagination
         $adapter = new DoctrineORMAdapter($em->getRepository(Post::class)->findAllPostsDescending(), false);
         $pager = new Pagerfanta($adapter);
-        $pager->setMaxPerPage(2);
+        $pager->setMaxPerPage(3);
         $pager->setCurrentPage($page);
 
         return $this->render('listPosts.html.twig', array(
