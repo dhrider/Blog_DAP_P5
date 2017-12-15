@@ -8,3 +8,7 @@ a.captcha_reload {
 a.captcha_reload :hover {
     background-color: #2C3E50;
 }
+
+.lienPost {
+    color: white;
+}

@@ -56,7 +56,10 @@ class ContactType extends AbstractType
             ->add('captcha', CaptchaType::class, array(
                 'label' => 'Captcha',
                 'reload' => true,
-                'as_url' => true
+                'as_url' => true,
+                'attr' => array(
+                    'placeholder' => 'Ecrivez le captcha ci-dessus'
+                )
             ))
             ->add('submit', SubmitType::class, array(
                 'attr' => array(

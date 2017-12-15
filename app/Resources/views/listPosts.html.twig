@@ -1,19 +1,23 @@
 {% extends 'base.html.twig' %}
 
 {% block pageContent %}
-    <h1>Liste des Posts</h1>
-    {% for post in pager.currentPageResults %}
-        <article>
-            <h3>{{ post.title }}</h3>
-            <h6>Dernière modification le : <span>{{ post.dateLastModification | date('d-m-Y') }}</span></h6>
-            <div>
-                <p>{{ post.chapo }}</p>
-            </div>
-            <a href="#" style="color: white;">Lire le post</a>
-            <br/>
-        </article>
-    {% endfor %}
-    <div class="pagerfanta">
-        {{ pagerfanta(pager, 'twitter_bootstrap3', {'routeName' : 'listPosts_paginated'}) }}
+    <div class="container-fluid">
+        <h1>Mes Posts</h1>
+        <br/>
+        {% for post in pager.currentPageResults %}
+            <article>
+                <h3>{{ post.title }}</h3>
+                <h6>Dernière modification le : <span>{{ post.dateLastModification | date('d-m-Y') }}</span></h6>
+                <div>
+                    <p>{{ post.chapo }}</p>
+                </div>
+                <a class="lienPost" href="#">Lire le post</a>
+                <br/>
+            </article>
+        {% endfor %}
+        <br/>
+        <div class="pagerfanta">
+            {{ pagerfanta(pager, 'twitter_bootstrap3', {'routeName' : 'listPosts_paginated'}) }}
+        </div>
     </div>
 {% endblock %}

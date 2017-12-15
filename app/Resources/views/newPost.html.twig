@@ -1,18 +1,15 @@
 {% extends 'base.html.twig' %}
 
 {% block pageContent %}
-    <div class="container-fluid col-md-offset-1 col-md-10" id="newPostContent">
-        <div class="row">
-            <div class="col-md-12">
-                <h1>Créez un nouveau Post :</h1>
-                <div id="newPostForm">
-                    {% if success %}
-                        {% include 'messageFlash.html.twig' with {'buttonId': 'closeNewPostMessage'} %}
-                    {% else %}
-                        {{ form(form) }}
-                    {% endif %}
-                </div>
-            </div>
+    <div class="container-fluid" id="newPostContent">
+        <h1>Créez votre nouveau Post</h1>
+        <br/>
+        <div id="newPostForm">
+            {% if success %}
+                {% include 'messageFlash.html.twig' with {'buttonId': 'closeNewPostMessage'} %}
+            {% else %}
+                {{ form(form) }}
+            {% endif %}
         </div>
     </div>
 {% endblock %}

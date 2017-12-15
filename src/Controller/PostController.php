@@ -8,8 +8,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Pagerfanta\Pagerfanta;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 class PostController extends Controller
 {
@@ -51,7 +49,7 @@ class PostController extends Controller
         // gestion de la pagination
         $adapter = new DoctrineORMAdapter($em->getRepository(Post::class)->findAllPostsDescending(), false);
         $pager = new Pagerfanta($adapter);
-        $pager->setMaxPerPage(2);
+        $pager->setMaxPerPage(3);
         $pager->setCurrentPage($page);
 
         return $this->render('listPosts.html.twig', array(
