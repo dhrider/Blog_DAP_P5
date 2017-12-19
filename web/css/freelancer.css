@@ -83,12 +83,13 @@ header {
   text-align: center;
   background: #18BC9C;
   color: white;
+  height: auto;
 }
 
 header .container {
   padding-top: 100px;
   padding-bottom: 50px;
-  height: 850px;
+  height: auto;
 }
 
 header img {

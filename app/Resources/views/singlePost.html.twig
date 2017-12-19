@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block pageContent %}
+    <div class="col-md-10">
+        <div id="postEntier">
+            <a href="javascript:window.scrollTo(0,document.body.scrollHeight)" class="pull-right btn btn-default" type="button" title="Bas de page">
+                <span class="glyphicon glyphicon-arrow-down"></span>
+            </a>
+            <h2 id="titre"><u>{{ post.title }}</u></h2>
+            <br/>
+            <h4>Résumé</h4>
+            <p class="chapo">{{ post.chapo }}</p>
+            <h4>Détail</h4>
+            <p id="postContent">{{ post.content | purify }}</p>
+            <br/>
+            <h5>Ecrit par : {{ post.author }}</h5>
+            <h6>Dernière modification le : {{ post.dateLastModification | date('d-m-Y') }}</h6>
+        </div>
+        <a href="javascript:window.scrollTo(0,0)" class="pull-right btn btn-default" type="button" title="Haut de page">
+            <span class="glyphicon glyphicon-arrow-up"></span>
+        </a>
+        <div>
+            <button onclick="window.history.back()" class="btn btn-primary pull-left">Retour à la liste des Posts</button>
+            <button class="btn btn-danger pull-right">Modifier le Post</button>
+        </div>
+    </div>
+{% endblock %}

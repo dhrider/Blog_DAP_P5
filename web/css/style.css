@@ -1,3 +1,9 @@
+html {
+    background: #18BC9C;
+    min-height: 100%;
+    position: relative;
+}
+
 article {
      background-color: #00CC00;
  }
@@ -7,4 +13,22 @@ a.captcha_reload {
 }
 a.captcha_reload :hover {
     background-color: #2C3E50;
+}
+
+#rowContent {
+    height: 100%;
+}
+
+.chapo, #postContent {
+    text-align: justify;
+}
+
+.footer-below {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer-above {
+    margin-bottom: 15px;
 }

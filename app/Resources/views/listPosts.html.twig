@@ -7,9 +7,9 @@
             <h3>{{ post.title }}</h3>
             <h6>Dernière modification le : <span>{{ post.dateLastModification | date('d-m-Y') }}</span></h6>
             <div>
-                <p>{{ post.chapo }}</p>
+                <p class="chapo">{{ post.chapo }}</p>
             </div>
-            <a href="#" style="color: white;">Lire le post</a>
+            <a href="{{ path('post', {'id' : post.id }) }}" style="color: white;">Lire le post</a>
             <br/>
         </article>
     {% endfor %}
