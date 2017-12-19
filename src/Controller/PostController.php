@@ -5,11 +5,10 @@ namespace App\Controller;
 use App\Entity\Post;
 use App\Form\PostType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\Request;
 use Pagerfanta\Pagerfanta;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 class PostController extends Controller
 {
@@ -44,18 +43,34 @@ class PostController extends Controller
         ));
     }
 
-    public function listPostsAction($page = 1)
+    public function listPostsAction($page)
     {
         $em = $this->getDoctrine()->getManager();
 
         // gestion de la pagination
         $adapter = new DoctrineORMAdapter($em->getRepository(Post::class)->findAllPostsDescending(), false);
         $pager = new Pagerfanta($adapter);
-        $pager->setMaxPerPage(3);
+        $pager->setMaxPerPage(4);
         $pager->setCurrentPage($page);
 
         return $this->render('listPosts.html.twig', array(
             'pager' => $pager
+        ));
+    }
+
+    public function singlePost(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $post = $em->getRepository(Post::class)->find($request->get('id'));
+
+        if (null === $post)
+        {
+            throw new NotFoundHttpException("Le post d'id ".$request->get('id')." n'existe pas.");
+        }
+
+        return $this->render('singlePost.html.twig', array(
+            'post' => $post
         ));
     }
 }

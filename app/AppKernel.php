@@ -17,6 +17,7 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Gregwar\CaptchaBundle\GregwarCaptchaBundle(),
             new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
+            new Exercise\HTMLPurifierBundle\ExerciseHTMLPurifierBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

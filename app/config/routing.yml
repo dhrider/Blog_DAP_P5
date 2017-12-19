@@ -12,6 +12,12 @@ listPosts_paginated:
     requirements:
         page: '\d+'
 
+post:
+    path: post/{id}
+    defaults: {_controller: App\Controller\PostController:singlePost}
+    requirements:
+        id: '\d+'
+
 contact:
     path: /contact
     defaults: {_controller: App\Controller\ContactController:contactAction}
