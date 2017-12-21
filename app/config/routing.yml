@@ -18,6 +18,10 @@ post:
     requirements:
         id: '\d+'
 
+post_edit:
+    path: post/edit
+    defaults: {_controller: App\Controller\PostController:editSinglePost}
+
 contact:
     path: /contact
     defaults: {_controller: App\Controller\ContactController:contactAction}

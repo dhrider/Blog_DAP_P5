@@ -21,7 +21,9 @@
         </a>
         <div>
             <button onclick="window.history.back()" class="btn btn-primary pull-left">Retour à la liste des Posts</button>
-            <button class="btn btn-danger pull-right">Modifier le Post</button>
+            <a href="{{ path('post_edit') }}" type="button" class="btn btn-danger pull-right" title="Add">
+                <span class="glyphicon glyphicon-pencil">Editer</span>
+            </a>
         </div>
     </div>
 {% endblock %}

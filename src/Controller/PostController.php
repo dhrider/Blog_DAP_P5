@@ -73,4 +73,9 @@ class PostController extends Controller
             'post' => $post
         ));
     }
+
+    public function editSinglePost(Request $request)
+    {
+        return $this->render('editSinglePost.html.twig');
+    }
 }
