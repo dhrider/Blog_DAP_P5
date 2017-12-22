@@ -27,13 +27,15 @@ class PostType extends AbstractType
            ->add('chapo', TextareaType::class, array(
                'label' => false,
                'attr' => array(
-                   'placeholder' => 'Ecrivrez votre introduction'
+                   'placeholder' => 'Ecrivrez votre introduction',
+                   'style' => 'height: 100px; resize: vertical'
                )
            ))
            ->add('content', TextareaType::class, array(
                'label' => false,
                'attr' => array(
-                   'placeholder' => 'Ecrivez votre post'
+                   'placeholder' => 'Ecrivez votre post',
+                   'style' => 'height: 300px; resize: vertical'
                )
            ))
            ->add('author', TextType::class, array(
