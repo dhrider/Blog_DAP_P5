@@ -88,6 +88,22 @@ class PostController extends Controller
 
         $form = $this->createForm(PostType::class, $post);
 
+        if($request->isMethod('POST') && $form->handleRequest($request)->isValid())
+        {
+            $post->setDateLastModification(new \DateTime());
+            $post->setTitle($form->getData()->getTitle());
+            $post->setChapo($form->getData()->getChapo());
+            $post->setContent($form->getData()->getContent());
+            $post->setAuthor($form->getData()->getAuthor());
+
+            $em->persist($post);
+            $em->flush();
+
+            return $this->redirectToRoute('post', array(
+               'id' => $post->getId()
+            ));
+        }
+
         return $this->render('editSinglePost.html.twig', array(
             'form' => $form->createView()
         ));
