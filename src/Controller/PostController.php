@@ -58,17 +58,8 @@ class PostController extends Controller
         ));
     }
 
-    public function singlePost(Request $request)
+    public function singlePost(Post $post)
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $post = $em->getRepository(Post::class)->find($request->get('id'));
-
-        if (null === $post)
-        {
-            throw new NotFoundHttpException("Le post d'id ".$request->get('id')." n'existe pas.");
-        }
-
         return $this->render('singlePost.html.twig', array(
             'post' => $post
         ));
