@@ -74,27 +74,16 @@ class PostController extends Controller
         ));
     }
 
-    public function editSinglePost(Request $request)
+    public function editSinglePost(Post $post, Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $post = $em->getRepository(Post::class)->find($request->get('id'));
-
-        // si aucun billet avec l'id demandé n'est trouvé, on lance un exception
-        if (null === $post)
-        {
-            throw new NotFoundHttpException("Le Post d'id ".$request->get('id')." n'existe pas.");
-        }
-
         $form = $this->createForm(PostType::class, $post);
+
 
         if($request->isMethod('POST') && $form->handleRequest($request)->isValid())
         {
             $post->setDateLastModification(new \DateTime());
-            $post->setTitle($form->getData()->getTitle());
-            $post->setChapo($form->getData()->getChapo());
-            $post->setContent($form->getData()->getContent());
-            $post->setAuthor($form->getData()->getAuthor());
 
             $em->persist($post);
             $em->flush();
