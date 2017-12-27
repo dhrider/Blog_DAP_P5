@@ -3,14 +3,13 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Table(name="post")
- * @ORM\Entity(repositoryClass="App\Repository\PostRepository")
+ * @ORM\Table(name="comment")
+ * @ORM\Entity(repositoryClass="App\Repository\CommentRepository")
  */
-class Post
+class Comment
 {
     /**
      * @ORM\Column(name="id", type="integer")
@@ -29,18 +28,10 @@ class Post
     ////////////////////////////////////////////////////////////////////////////////
 
     /**
-     * @ORM\Column(name="title", type="string")
-     * @Assert\NotBlank()
+     * @ORM\Column(name="author", type="string")
+     * @Assert\NotBLank()
      */
-    private $title;
-
-    ////////////////////////////////////////////////////////////////////////////////
-
-    /**
-     * @ORM\Column(name="chapo", type="text")
-     * @Assert\NotBlank()
-     */
-    private $chapo;
+    private $author;
 
     ////////////////////////////////////////////////////////////////////////////////
 
@@ -53,24 +44,24 @@ class Post
     ////////////////////////////////////////////////////////////////////////////////
 
     /**
-     * @ORM\Column(name="author", type="string")
-     * @Assert\NotBlank()
+     * @ORM\Column(name="validate", type="boolean")
      */
-    private $author;
+    private $validate;
 
     ////////////////////////////////////////////////////////////////////////////////
 
     /**
-     * @ORM\Column(name="date_last_modification", type="datetime")
+     * @ORM\Column(name="date_validate", type"datetime")
      */
-    private $dateLastModification;
+    private $dateValidate;
 
     ////////////////////////////////////////////////////////////////////////////////
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="post", cascade={"all"}, fetch="EAGER", orphanRemoval=true)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Post", inversedBy="comments")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $comments;
+    private $post;
 
     ////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////
@@ -78,12 +69,12 @@ class Post
     public function __construct()
     {
         $this->dateCreation = new \DateTime();
-        $this->dateLastModification = new \DateTime();
+        $this->dateValidate = null;
+        $this->validate = false;
     }
 
     ////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////
-
 
     /**
      * @return mixed
@@ -116,35 +107,17 @@ class Post
     /**
      * @return mixed
      */
-    public function getTitle()
+    public function getAuthor()
     {
-        return $this->title;
+        return $this->author;
     }
 
     /**
-     * @param mixed $title
+     * @param mixed $author
      */
-    public function setTitle($title)
+    public function setAuthor($author)
     {
-        $this->title = $title;
-    }
-
-    ////////////////////////////////////////////////////////////////////////////////
-
-    /**
-     * @return mixed
-     */
-    public function getChapo()
-    {
-        return $this->chapo;
-    }
-
-    /**
-     * @param mixed $chapo
-     */
-    public function setChapo($chapo)
-    {
-        $this->chapo = $chapo;
+        $this->author = $author;
     }
 
     ////////////////////////////////////////////////////////////////////////////////
@@ -170,17 +143,17 @@ class Post
     /**
      * @return mixed
      */
-    public function getAuthor()
+    public function getValidate()
     {
-        return $this->author;
+        return $this->validate;
     }
 
     /**
-     * @param mixed $author
+     * @param mixed $validate
      */
-    public function setAuthor($author)
+    public function setValidate($validate)
     {
-        $this->author = $author;
+        $this->validate = $validate;
     }
 
     ////////////////////////////////////////////////////////////////////////////////
@@ -188,52 +161,33 @@ class Post
     /**
      * @return mixed
      */
-    public function getDateLastModification()
+    public function getDateValidate()
     {
-        return $this->dateLastModification;
+        return $this->dateValidate;
     }
 
     /**
-     * @param mixed $dateLastModification
+     * @param mixed $dateValidate
      */
-    public function setDateLastModification(\DateTime $dateLastModification)
+    public function setDateValidate(\DateTime $dateValidate)
     {
-        $this->dateLastModification = $dateLastModification;
+        $this->dateValidate = $dateValidate;
     }
 
     ////////////////////////////////////////////////////////////////////////////////
 
     /**
-     * @param Comment $comment
+     * @return mixed
      */
-    public function addComment(Comment $comment)
+    public function getPost()
     {
-        $comment->setPost($this);
-
-        $this->comments[] = $comment;
+        return $this->post;
     }
 
-    public function removeComment(Comment $comment)
+    public function setPost(Post $post)
     {
-        $this->comments->removeElement($comment);
-    }
+        $this->post = $post;
 
-    /**
-     * @return ArrayCollection
-     */
-    public function getComments()
-    {
-        return $this->comments;
-    }
-
-    /**
-     * @param ArrayCollection $comments
-     */
-    public function setComments($comments)
-    {
-        foreach ($comments as &$comment)
-        {
-            $comment->setPost($this);
-        }
+        return $this;
     }
 }
