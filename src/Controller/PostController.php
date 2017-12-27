@@ -60,6 +60,7 @@ class PostController extends Controller
 
     public function singlePost(Post $post)
     {
+
         return $this->render('singlePost.html.twig', array(
             'post' => $post
         ));
