@@ -23,7 +23,7 @@ class CommentType extends AbstractType
                     'placeholder' => 'Name'
                 )
             ))
-            ->add('message', TextareaType::class, array(
+            ->add('content', TextareaType::class, array(
                 'label' => 'Commentaire',
                 'attr' => array(
                     'placeholder' => 'Your Comment',
