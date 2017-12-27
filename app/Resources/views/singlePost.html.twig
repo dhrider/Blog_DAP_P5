@@ -9,11 +9,19 @@
         <br/>
         <h4>Résumé</h4>
         <p class="chapo">{{ post.chapo }}</p>
+        <hr/>
         <h4>Détail</h4>
         <p id="postContent">{{ post.content | purify }}</p>
-        <br/>
+        <hr/>
         <h5>Ecrit par : {{ post.author }}</h5>
         <h6>Dernière modification le : {{ post.dateLastModification | date('d-m-Y') }}</h6>
+        <hr/>
+        <div class="comments" id="comments">
+            <div class="previousComments">
+                <h3 id="commentaires">Commentaires :</h3>
+                {% include('comment.html.twig') %}
+            </div>
+        </div>
     </div>
     <a href="javascript:window.scrollTo(0,0)" class="pull-right btn btn-default" type="button" title="Haut de page">
         <span class="glyphicon glyphicon-arrow-up"></span>

@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Comment;
 use App\Entity\Post;
+use App\Form\CommentType;
 use App\Form\PostType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -58,11 +60,32 @@ class PostController extends Controller
         ));
     }
 
-    public function singlePost(Post $post)
+    public function singlePost(Post $post, Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
+
+        $comments = $em->getRepository(Comment::class)->findCommentsByPostId($post->getId());
+
+        $comment = new Comment();
+
+        $form = $this->createForm(CommentType::class, $comment);
+
+        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid())
+        {
+            $comment->setPost($post);
+
+            $em->persist($comment);
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('post',
+                ['id' => $comment->getPost()->getId()]).'#comments')
+            ;
+        }
 
         return $this->render('singlePost.html.twig', array(
-            'post' => $post
+            'post' => $post,
+            'comments' => $comments,
+            'form' => $form->createView()
         ));
     }
 

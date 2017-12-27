@@ -51,7 +51,7 @@ class Comment
     ////////////////////////////////////////////////////////////////////////////////
 
     /**
-     * @ORM\Column(name="date_validate", type="datetime")
+     * @ORM\Column(name="date_validate", type="datetime", nullable=true)
      */
     private $dateValidate;
 
