@@ -19,33 +19,33 @@ class PostType extends AbstractType
     {
        $builder
            ->add('title', TextType::class, array(
-               'label' => false,
+               'label' => 'Titre',
                'attr' => array(
                    'placeholder' => 'Entrez un titre'
                )
            ))
            ->add('chapo', TextareaType::class, array(
-               'label' => false,
+               'label' => 'Résumé',
                'attr' => array(
                    'placeholder' => 'Ecrivrez votre introduction',
                    'style' => 'height: 100px; resize: vertical'
                )
            ))
            ->add('content', TextareaType::class, array(
-               'label' => false,
+               'label' => 'Contenu',
                'attr' => array(
                    'placeholder' => 'Ecrivez votre post',
                    'style' => 'height: 300px; resize: vertical'
                )
            ))
            ->add('author', TextType::class, array(
-               'label' => false,
+               'label' => 'Auteur',
                'attr' => array(
                    'placeholder' => 'Ecrivez votre nom'
                )
            ))
            ->add('captcha', CaptchaType::class, array(
-               'label' => false,
+               'label' => 'Captcha',
                'reload' => true,
                'as_url' => true,
                'attr' => array(
