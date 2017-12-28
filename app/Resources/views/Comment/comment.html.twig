@@ -1,0 +1,25 @@
+{% if comments %}
+    {% for comment in comments %}
+        {% if comment.validate %}
+            <article class="comment {{ cycle(['odd', 'even'], loop.index0) }} comment" id="comment-{{ comment.id }}">
+                <header>
+                    <p>
+                        <u>
+                            <span class="couleur">{{ comment.author }} a commenté le </span>
+                            <span class="couleur">{{ comment.dateCreation | date('d-m-Y') }} à </span>
+                            <span class="couleur">{{ comment.dateCreation | date('H:i:s')}}</span>
+                        </u>
+                    </p>
+                </header>
+                <p>{{ comment.content }}</p>
+            </article>
+        {% endif %}
+    {% endfor %}
+{% else %}
+    <p>No comment</p>
+{% endif %}
+<hr/>
+<div class="container-fluid col-md-12">
+    <h4 id="commentFormTitle">Add your Comment</h4>
+    {{ form(form) }}
+</div>

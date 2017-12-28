@@ -18,8 +18,8 @@
         <hr/>
         <div class="comments" id="comments">
             <div class="previousComments">
-                <h3 id="commentaires">Commentaires :</h3>
-                {% include('comment.html.twig') %}
+                <h3 id="commentaires">Comments</h3>
+                {% include('Comment/comment.html.twig') %}
             </div>
         </div>
     </div>
@@ -28,10 +28,10 @@
     </a>
     <div>
         <a href="{{ path('listPosts_paginated') }}" type="button" class="btn btn-primary pull-left">
-            Retour à la liste des Posts
+            Return to the Posts list
         </a>
         <a href="{{ path('post_edit', {'id': post.id}) }}" type="button" class="btn btn-danger pull-right" title="Add">
-            <span class="glyphicon glyphicon-pencil"> Editer</span>
+            <span class="glyphicon glyphicon-pencil"> Edit this post</span>
         </a>
     </div>
 {% endblock %}

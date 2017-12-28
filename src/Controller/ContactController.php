@@ -44,7 +44,7 @@ class ContactController extends Controller
             ));
         }
 
-        return $this->render('contactForm.html.twig', array(
+        return $this->render('Contact/contactForm.html.twig', array(
             'form' => $form->createView(),
             'success' => $success
         ));

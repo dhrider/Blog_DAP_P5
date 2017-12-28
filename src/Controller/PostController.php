@@ -7,7 +7,6 @@ use App\Entity\Post;
 use App\Form\CommentType;
 use App\Form\PostType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\Request;
 use Pagerfanta\Pagerfanta;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
@@ -32,14 +31,14 @@ class PostController extends Controller
             $success = true;
 
             $session = $this->container->get('session');
-            $session->getFlashBag()->set('success', 'Votre post a bien été crée.');
+            $session->getFlashBag()->set('success', 'Your Post has been successfully created.');
 
             $this->redirectToRoute('newPost',array(
                 'success' => $success
             ));
         }
 
-        return $this->render('newPost.html.twig', array(
+        return $this->render('Post/newPost.html.twig', array(
             'form' => $form->createView(),
             'success' => $success
         ));
@@ -55,7 +54,7 @@ class PostController extends Controller
         $pager->setMaxPerPage(4);
         $pager->setCurrentPage($page);
 
-        return $this->render('listPosts.html.twig', array(
+        return $this->render('Post/listPosts.html.twig', array(
             'pager' => $pager
         ));
     }
@@ -82,7 +81,7 @@ class PostController extends Controller
             ;
         }
 
-        return $this->render('singlePost.html.twig', array(
+        return $this->render('Post/singlePost.html.twig', array(
             'post' => $post,
             'comments' => $comments,
             'form' => $form->createView()
@@ -108,7 +107,7 @@ class PostController extends Controller
             ));
         }
 
-        return $this->render('editSinglePost.html.twig', array(
+        return $this->render('Post/editSinglePost.html.twig', array(
             'form' => $form->createView()
         ));
     }

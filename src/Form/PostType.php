@@ -19,29 +19,29 @@ class PostType extends AbstractType
     {
        $builder
            ->add('title', TextType::class, array(
-               'label' => 'Titre',
+               'label' => 'Title',
                'attr' => array(
-                   'placeholder' => 'Entrez un titre'
+                   'placeholder' => 'Enter a title'
                )
            ))
            ->add('chapo', TextareaType::class, array(
-               'label' => 'Résumé',
+               'label' => 'Summary',
                'attr' => array(
-                   'placeholder' => 'Ecrivrez votre introduction',
+                   'placeholder' => 'Enter a summary',
                    'style' => 'height: 100px; resize: vertical'
                )
            ))
            ->add('content', TextareaType::class, array(
-               'label' => 'Contenu',
+               'label' => 'Content',
                'attr' => array(
-                   'placeholder' => 'Ecrivez votre post',
+                   'placeholder' => 'Enter the content',
                    'style' => 'height: 300px; resize: vertical'
                )
            ))
            ->add('author', TextType::class, array(
-               'label' => 'Auteur',
+               'label' => 'Author',
                'attr' => array(
-                   'placeholder' => 'Ecrivez votre nom'
+                   'placeholder' => 'Enter your Name'
                )
            ))
            ->add('captcha', CaptchaType::class, array(
@@ -49,14 +49,14 @@ class PostType extends AbstractType
                'reload' => true,
                'as_url' => true,
                'attr' => array(
-                   'placeholder' => 'Ecrivez le captcha ci-dessus'
+                   'placeholder' => 'Enter the captcha as above'
                )
            ))
-           ->add('Submit',         SubmitType::class, array(
+           ->add('Submit', SubmitType::class, array(
                'attr' => array(
                    'class' => 'btn-primary pull-left'
                ),
-               'label' => 'Valider'
+               'label' => 'Validate'
            ))
        ;
     }
