@@ -69,6 +69,8 @@ class PostController extends Controller
 
         $form = $this->createForm(CommentType::class, $comment);
 
+        $success = false;
+
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid())
         {
             $comment->setPost($post);
@@ -76,15 +78,23 @@ class PostController extends Controller
             $em->persist($comment);
             $em->flush();
 
+            $success = true;
+
+            // on prépare le message affiché à l'utilisateur quand le message est bien envoyé
+            $session = $this->container->get('session');
+            $session->getFlashBag()->set('success', 'Your comment awaits validation from the Administrators.');
+
             return $this->redirect($this->generateUrl('post',
-                ['id' => $comment->getPost()->getId()]).'#comments')
+                ['id' => $comment->getPost()->getId(),'success' => $success
+                ]).'#comments')
             ;
         }
 
         return $this->render('Post/singlePost.html.twig', array(
             'post' => $post,
             'comments' => $comments,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'success' => $success
         ));
     }
 
@@ -93,7 +103,6 @@ class PostController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $form = $this->createForm(PostType::class, $post);
-
 
         if($request->isMethod('POST') && $form->handleRequest($request)->isValid())
         {

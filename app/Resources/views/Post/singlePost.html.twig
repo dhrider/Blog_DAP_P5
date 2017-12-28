@@ -7,18 +7,21 @@
         </a>
         <h2 id="titre"><u>{{ post.title }}</u></h2>
         <br/>
-        <h4>Résumé</h4>
+        <h4>Summary</h4>
         <p class="chapo">{{ post.chapo }}</p>
         <hr/>
-        <h4>Détail</h4>
+        <h4>Content</h4>
         <p id="postContent">{{ post.content | purify }}</p>
         <hr/>
-        <h5>Ecrit par : {{ post.author }}</h5>
-        <h6>Dernière modification le : {{ post.dateLastModification | date('d-m-Y') }}</h6>
+        <h5>Wrote by : {{ post.author }}</h5>
+        <h6>Last modification : {{ post.dateLastModification | date('d-m-Y') }}</h6>
         <hr/>
         <div class="comments" id="comments">
             <div class="previousComments">
                 <h3 id="commentaires">Comments</h3>
+                {% if app.request.get('success') %}
+                    {% include 'messageFlash.html.twig' with {'buttonId': 'commentSend'} %}
+                {% endif %}
                 {% include('Comment/comment.html.twig') %}
             </div>
         </div>
