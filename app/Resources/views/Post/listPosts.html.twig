@@ -1,15 +1,16 @@
 {% extends 'base.html.twig' %}
 
 {% block pageContent %}
-    <h1>Liste des Posts</h1>
+    <h1>Posts List</h1>
+    <hr/>
     {% for post in pager.currentPageResults %}
         <article>
             <h3>{{ post.title }}</h3>
-            <h6>Dernière modification le : <span>{{ post.dateLastModification | date('d-m-Y') }}</span></h6>
+            <h6>Last modification : <span>{{ post.dateLastModification | date('d-m-Y') }}</span></h6>
             <div>
                 <p class="chapo">{{ post.chapo }}</p>
             </div>
-            <a href="{{ path('post', {'id' : post.id }) }}" style="color: white;">Lire le post</a>
+            <a href="{{ path('post', {'id' : post.id }) }}" style="color: white;">Read the post...</a>
             <br/>
         </article>
     {% endfor %}

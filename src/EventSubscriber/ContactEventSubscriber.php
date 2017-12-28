@@ -37,7 +37,7 @@ class ContactEventSubscriber implements EventSubscriberInterface
             ->setFrom($contact->getEmail())
             ->setTo('p_bordmann@orange.fr')
             ->setContentType('text/html')
-            ->setBody($this->twigEngine->render('contactEmail.html.twig',
+            ->setBody($this->twigEngine->render('Contact/contactEmail.html.twig',
                 array('contact' => $contact))
             )
         ;
