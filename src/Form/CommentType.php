@@ -19,20 +19,25 @@ class CommentType extends AbstractType
     {
         $builder
             ->add('author', TextType::class, array(
+                'label' => false,
                 'attr' => array(
                     'placeholder' => 'Name'
                 )
             ))
             ->add('content', TextareaType::class, array(
+                'label' => false,
                 'attr' => array(
                     'placeholder' => 'Your Comment',
                     'style' => 'height: 75px'
                 )
             ))
             ->add('captcha', CaptchaType::class, array(
-                'label' => 'Captcha',
+                'label' => false,
                 'reload' => true,
-                'as_url' => true
+                'as_url' => true,
+                'attr' => array(
+                    'placeholder' => 'Enter the captcha as above'
+                )
             ))
             ->add('submit', SubmitType::class, array(
                 'attr' => array(

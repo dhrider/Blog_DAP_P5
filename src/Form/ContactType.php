@@ -21,11 +21,13 @@ class ContactType extends AbstractType
     {
         $builder
             ->add('firstName', TextType::class, array(
+                'label' => false,
                 'attr' => array(
                     'placeholder' => 'Your First Name'
                 )
             ))
             ->add('lastName',TextType::class, array(
+                'label' => false,
                 'attr' => array(
                     'placeholder' => 'Your Last Name'
                 )
@@ -34,29 +36,32 @@ class ContactType extends AbstractType
                 'type' => EmailType::class,
                 'invalid_message' => 'The emails are not the same !',
                 'first_options' => array(
-                    'label' => 'Enter Email',
+                    'label' => false,
                     'attr' => array(
                         'placeholder' => 'Your email'
                     )
                 ),
                 'second_options' => array(
-                    'label' => 'Repeat Email',
+                    'label' => false,
                     'attr' => array(
                         'placeholder' => 'Repeat you email'
                     )
                 )
             ))
             ->add('message', TextareaType::class, array(
-                'label' => 'Message',
+                'label' => false,
                 'attr' => array(
                     'placeholder' => 'Your Message',
                     'style' => 'height: 100px'
                 )
             ))
             ->add('captcha', CaptchaType::class, array(
-                'label' => 'Captcha',
+                'label' => false,
                 'reload' => true,
-                'as_url' => true
+                'as_url' => true,
+                'attr' => array(
+                    'placeholder' => 'Enter the same text as above'
+                )
             ))
             ->add('submit', SubmitType::class, array(
                 'attr' => array(
