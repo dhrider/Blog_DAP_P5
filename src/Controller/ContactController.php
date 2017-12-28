@@ -37,7 +37,7 @@ class ContactController extends Controller
 
             // on prépare le message affiché à l'utilisateur quand le message est bien envoyé
             $session = $this->container->get('session');
-            $session->getFlashBag()->set('success', 'You\'re message has been send.');
+            $session->getFlashBag()->set('success', 'Your message has been send.');
 
             $this->redirectToRoute('contact',array(
                 'success' => $success
