@@ -4,6 +4,9 @@
     <div class="container-fluid col-md-offset-1 col-md-10" id="newPostContent">
         <div class="row">
             <div class="col-md-12">
+                <a href="javascript:window.scrollTo(0,document.body.scrollHeight)" class="pull-right btn btn-default" type="button" title="Page Bottom">
+                    <span class="glyphicon glyphicon-arrow-down"></span>
+                </a>
                 <h1>Create a new Post</h1>
                 <hr/>
                 <div id="newPostForm">
@@ -13,6 +16,9 @@
                         {{ form(form) }}
                     {% endif %}
                 </div>
+                <a href="javascript:window.scrollTo(0,0)" class="pull-right btn btn-default" type="button" title="Page Top">
+                    <span class="glyphicon glyphicon-arrow-up"></span>
+                </a>
             </div>
         </div>
     </div>

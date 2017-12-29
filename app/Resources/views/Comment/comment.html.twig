@@ -12,11 +12,10 @@
                 <p>{{ comment.content }}</p>
             </div>
         {% endif %}
-        <hr/>
     {% else %}
         <p>No comment</p>
     {% endfor %}
-
+<hr/>
 <div class="container-fluid col-md-12" id="commentForm">
     <h4 id="commentFormTitle">Add your Comment</h4>
     {{ form(form) }}
