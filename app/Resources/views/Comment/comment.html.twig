@@ -1,4 +1,4 @@
-{% if comments %}
+
     {% for comment in comments %}
         {% if comment.validate %}
             <article class="comment {{ cycle(['odd', 'even'], loop.index0) }} comment" id="comment-{{ comment.id }}">
@@ -14,12 +14,11 @@
                 <p>{{ comment.content }}</p>
             </article>
         {% endif %}
+    {% else %}
+        <p>No comment</p>
     {% endfor %}
-{% else %}
-    <p>No comment</p>
-{% endif %}
 <hr/>
-<div class="container-fluid col-md-12">
+<div class="container-fluid col-md-12" id="commentForm">
     <h4 id="commentFormTitle">Add your Comment</h4>
     {{ form(form) }}
 </div>

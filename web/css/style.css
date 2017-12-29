@@ -10,11 +10,12 @@ article {
 
 a.captcha_reload {
     color: black;
-}
-a.captcha_reload :hover {
-    background-color: #2C3E50;
+    display: flex;
 }
 
+.captcha_image {
+    margin: 0;
+}
 #rowContent {
     height: 100%;
 }
@@ -30,5 +31,9 @@ a.captcha_reload :hover {
 }
 
 .footer-above {
+    margin-bottom: 15px;
+}
+
+#commentForm {
     margin-bottom: 15px;
 }
