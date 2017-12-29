@@ -5,7 +5,8 @@ html {
 }
 
 article {
-     background-color: #00CC00;
+    background-color: #63D7C0;
+    border-radius: 15px;
  }
 
 a.captcha_reload {
@@ -16,6 +17,7 @@ a.captcha_reload {
 .captcha_image {
     margin: 0;
 }
+
 #rowContent {
     height: 100%;
 }
@@ -36,4 +38,20 @@ a.captcha_reload {
 
 #commentForm {
     margin-bottom: 15px;
+}
+
+p {
+    color: #2C3E50;
+}
+
+.dateModif {
+    color: chocolate;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #0C2032;
+}
+
+.chapo {
+    padding: 15px;
 }

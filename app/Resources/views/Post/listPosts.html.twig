@@ -6,11 +6,11 @@
     {% for post in pager.currentPageResults %}
         <article>
             <h3>{{ post.title }}</h3>
-            <h6>Last modification : <span>{{ post.dateLastModification | date('d-m-Y') }}</span></h6>
+            <h6>Last modification : <span class="dateModif">{{ post.dateLastModification | date('d-m-Y') }}</span></h6>
             <div>
                 <p class="chapo">{{ post.chapo }}</p>
             </div>
-            <a href="{{ path('post', {'id' : post.id }) }}" style="color: white;">Read the post...</a>
+            <a href="{{ path('post', {'id' : post.id }) }}" style="color: blue;">Read the post...</a>
             <br/>
         </article>
     {% endfor %}

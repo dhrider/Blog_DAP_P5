@@ -13,8 +13,8 @@
         <h4>Content</h4>
         <p id="postContent">{{ post.content | purify }}</p>
         <hr/>
-        <h5>Wrote by : {{ post.author }}</h5>
-        <h6>Last modification : {{ post.dateLastModification | date('d-m-Y') }}</h6>
+        <h6>Wrote by : {{ post.author }}</h6>
+        <h6>Last modification : <span class="dateModif">{{ post.dateLastModification | date('d-m-Y') }}</span></h6>
         <hr/>
         <div class="comments" id="comments">
             <div class="previousComments">
