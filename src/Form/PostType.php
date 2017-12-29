@@ -56,7 +56,7 @@ class PostType extends AbstractType
                'attr' => array(
                    'class' => 'btn-primary pull-left'
                ),
-               'label' => 'Validate'
+               'label' => 'Save'
            ))
        ;
     }
