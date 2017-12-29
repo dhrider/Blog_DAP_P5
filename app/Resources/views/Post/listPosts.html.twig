@@ -1,6 +1,9 @@
 {% extends 'base.html.twig' %}
 
 {% block pageContent %}
+    <a href="javascript:window.scrollTo(0,document.body.scrollHeight)" class="pull-right btn btn-default" type="button" title="Page Bottom">
+        <span class="glyphicon glyphicon-arrow-down"></span>
+    </a>
     <h1>Posts List</h1>
     <hr/>
     {% for post in pager.currentPageResults %}
@@ -17,4 +20,7 @@
     <div class="pagerfanta">
         {{ pagerfanta(pager, 'twitter_bootstrap3', {'routeName' : 'listPosts_paginated'}) }}
     </div>
+    <a href="javascript:window.scrollTo(0,0)" class="pull-right btn btn-default" type="button" title="Page Top">
+        <span class="glyphicon glyphicon-arrow-up"></span>
+    </a>
 {% endblock %}
