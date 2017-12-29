@@ -1,8 +1,8 @@
 
     {% for comment in comments %}
         {% if comment.validate %}
-            <article class="comment {{ cycle(['odd', 'even'], loop.index0) }} comment" id="comment-{{ comment.id }}">
-                <header>
+            <div class=" comment {{ cycle(['odd', 'even'], loop.index0) }} comment" id="comment-{{ comment.id }}">
+                <header class="commentHeader">
                     <p>
                         <u>
                             <span class="couleur">{{ comment.author }} a commenté le </span>
@@ -12,8 +12,9 @@
                     </p>
                 </header>
                 <p>{{ comment.content }}</p>
-            </article>
+            </div>
         {% endif %}
+        <hr/>
     {% else %}
         <p>No comment</p>
     {% endfor %}
