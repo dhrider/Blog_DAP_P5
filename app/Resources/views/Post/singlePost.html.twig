@@ -5,12 +5,12 @@
         <a href="javascript:window.scrollTo(0,document.body.scrollHeight)" class="pull-right btn btn-default" type="button" title="Bas de page">
             <span class="glyphicon glyphicon-arrow-down"></span>
         </a>
-        <h2 id="titre"><u>{{ post.title }}</u></h2>
+        <h2 id="titre">{{ post.title }}</h2>
         <br/>
-        <h4>Summary</h4>
+        <h4><u>Summary</u></h4>
         <p class="chapo">{{ post.chapo }}</p>
         <hr/>
-        <h4>Content</h4>
+        <h4><u>Content</u></h4>
         <p id="postContent">{{ post.content | purify }}</p>
         <hr/>
         <h6>Wrote by : {{ post.author }}</h6>
@@ -18,7 +18,7 @@
         <hr/>
         <div class="comments" id="comments">
             <div class="previousComments">
-                <h3 id="commentaires">Comments</h3>
+                <h3 id="commentaires"><u>Comments</u></h3>
                 {% if app.request.get('success') %}
                     {% include 'messageFlash.html.twig' with {'buttonId': 'commentSend'} %}
                 {% endif %}
