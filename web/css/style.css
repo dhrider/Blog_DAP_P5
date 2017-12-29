@@ -42,6 +42,7 @@ a.captcha_reload {
 
 p {
     color: #2C3E50;
+    margin: 10px;
 }
 
 .dateModif {
@@ -55,3 +56,4 @@ h1, h2, h3, h4, h5, h6 {
 .chapo {
     padding: 15px;
 }
+
