@@ -2,6 +2,8 @@ home:
     path: /
     defaults: {_controller: App\Controller\HomeController:homeAction}
 
+
+
 newPost:
     path: /newPost
     defaults: {_controller: App\Controller\PostController:newPostAction}
@@ -24,9 +26,27 @@ post_edit:
     requirements:
             id: '\d+'
 
+
+
 contact:
     path: /contact
     defaults: {_controller: App\Controller\ContactController:contactAction}
+
+
+
+login:
+     path: /login
+     defaults: {_controller: App\Controller\Security:loginAction}
+
+login_check:
+    path: /login/check
+    defaults: {_controller: App\Controller\Security:loginCheckAction}
+
+logout:
+    path: /logout
+    defaults: {_controller: App\Controller\Security:logoutAction}
+
+
 
 gregwar_captcha_routing:
     resource: "@GregwarCaptchaBundle/Resources/config/routing/routing.yml"

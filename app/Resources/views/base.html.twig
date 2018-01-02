@@ -101,8 +101,42 @@
                 <div class="footer-below">
                     <div class="container">
                         <div class="row">
-                            <div class="col-lg-12">
+                            <div class=" pull-left">
                                 Copyright &copy; Philippe Bordmann Blog 2017
+                            </div>
+                            <div class=" collapse navbar-collapse" id="navbar-collapse-target">
+                                <ul class="nav navbar-nav navbar-right">
+                                    {% if app.user %}
+                                        <li class="dropup">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                <span class="glyphicon glyphicon-cog"></span> Administration <b class="caret"></b>
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="#">Billets</a></li>
+                                                <li><a href="#">Commentaires</a></li>
+                                            </ul>
+                                        </li>
+                                    {% endif %}
+                                    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                                        <li class="dropup">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                <span class="glyphicon glyphicon-user"></span> Bonjour Jean <b class="caret"></b>
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="#">Log out</a></li>
+                                            </ul>
+                                        </li>
+                                    {% else %}
+                                        <li class="dropup">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                <span class="glyphicon glyphicon-user"></span> Admin <b class="caret"></b>
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="#">Log in</a></li>
+                                            </ul>
+                                        </li>
+                                    {% endif %}
+                                </ul>
                             </div>
                          </div>
                     </div>
