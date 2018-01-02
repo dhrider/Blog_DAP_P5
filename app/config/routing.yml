@@ -36,15 +36,15 @@ contact:
 
 login:
      path: /login
-     defaults: {_controller: App\Controller\Security:loginAction}
+     defaults: {_controller: App\Controller\SecurityController:loginAction}
 
 login_check:
     path: /login/check
-    defaults: {_controller: App\Controller\Security:loginCheckAction}
+    defaults: {_controller: App\Controller\SecurityController:loginCheckAction}
 
 logout:
     path: /logout
-    defaults: {_controller: App\Controller\Security:logoutAction}
+    defaults: {_controller: App\Controller\SecurityController:logoutAction}
 
 
 
