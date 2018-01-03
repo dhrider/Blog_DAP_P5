@@ -14,12 +14,14 @@
                     <fieldset>
                         <legend><i class="fa fa-lock" aria-hidden="true"></i> Connexion :</legend>
                         <div class="form-group">
-                            <label for="username">Username</label>
+                            <label class="loginLabel" for="username">Username</label>
                             <input type="text" id="username" name="_username" value="{{ last_username }}" class="form-control"/>
+                            <a href="#">Forgot your Username ?</a>
                         </div>
                         <div class="form-group">
-                            <label for="password">Password</label>
+                            <label class="loginLabel" for="password">Password</label>
                             <input type="password" id="password" name="_password" class="form-control" />
+                            <a href="#">Forgot your Password ?</a>
                         </div>
                         <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
                         <button type="submit" class="btn btn-primary">
@@ -27,6 +29,7 @@
                         </button>
                     </fieldset>
                 </form>
+                <a href="{{ path('register_user') }}">Not Registred yet ? Click here.</a>
             </div>
         </div>
     </div>
