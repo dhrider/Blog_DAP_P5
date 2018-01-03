@@ -21,6 +21,13 @@ class User implements UserInterface
     ////////////////////////////////////////////////////////////////////////////////
 
     /**
+     * @ORM\Column(name="date_creation", type="datetime")
+     */
+    protected $dateCreation;
+
+    ////////////////////////////////////////////////////////////////////////////////
+
+    /**
      * @ORM\Column(name="username", type="string")
      */
     protected $username;
@@ -48,6 +55,11 @@ class User implements UserInterface
 
     ////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////
+
+    public function __construct()
+    {
+        $this->dateCreation = new \DateTime();
+    }
 
     public function getRoles()
     {
@@ -98,6 +110,25 @@ class User implements UserInterface
     {
         return $this->id;
     }
+
+    ////////////////////////////////////////////////////////////////////////////////
+
+    /**
+     * @return mixed
+     */
+    public function getDateCreation()
+    {
+        return $this->dateCreation;
+    }
+
+    /**
+     * @param mixed $dateCreation
+     */
+    public function setDateCreation(\DateTime $dateCreation)
+    {
+        $this->dateCreation = $dateCreation;
+    }
+
 
     ////////////////////////////////////////////////////////////////////////////////
 

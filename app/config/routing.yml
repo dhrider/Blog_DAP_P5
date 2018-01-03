@@ -34,6 +34,12 @@ contact:
 
 
 
+register_user:
+    path: /register
+    defaults: {_controller: App\Controller\UserController:registerUserAction}
+
+
+
 login:
      path: /login
      defaults: {_controller: App\Controller\SecurityController:loginAction}
