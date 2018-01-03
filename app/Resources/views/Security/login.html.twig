@@ -12,7 +12,7 @@
             <div class="well">
                 <form action="{{ path('login_check') }}" method="post">
                     <fieldset>
-                        <legend><i class="fa fa-lock" aria-hidden="true"></i>Connexion :</legend>
+                        <legend><i class="fa fa-lock" aria-hidden="true"></i> Connexion :</legend>
                         <div class="form-group">
                             <label for="username">Username</label>
                             <input type="text" id="username" name="_username" value="{{ last_username }}" class="form-control"/>
@@ -23,7 +23,7 @@
                         </div>
                         <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
                         <button type="submit" class="btn btn-primary">
-                            <i class="fa fa-sign-in" aria-hidden="true"></i>Login
+                            <i class="fa fa-sign-in" aria-hidden="true"></i> Login
                         </button>
                     </fieldset>
                 </form>
