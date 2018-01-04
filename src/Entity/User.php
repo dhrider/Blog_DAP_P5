@@ -4,10 +4,14 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @UniqueEntity("username", message="The username already exist. Choose another one.")
+ * @UniqueEntity("email", message="The email already exist. Choose another one.")
  */
 class User implements UserInterface
 {
@@ -28,7 +32,7 @@ class User implements UserInterface
     ////////////////////////////////////////////////////////////////////////////////
 
     /**
-     * @ORM\Column(name="username", type="string")
+     * @ORM\Column(name="username", type="string", unique=true)
      */
     protected $username;
 
@@ -42,7 +46,8 @@ class User implements UserInterface
     ////////////////////////////////////////////////////////////////////////////////
 
     /**
-     * @ORM\Column(name="email", type="string")
+     * @ORM\Column(name="email", type="string", unique=true)
+     * @Assert\Email()
      */
     protected $email;
 

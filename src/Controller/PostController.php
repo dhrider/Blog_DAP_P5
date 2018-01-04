@@ -38,7 +38,7 @@ class PostController extends Controller
             ));
         }
 
-        return $this->render('Post/newPost.html.twig', array(
+        return $this->render('Admin/newPost.html.twig', array(
             'form' => $form->createView(),
             'success' => $success
         ));
@@ -116,7 +116,7 @@ class PostController extends Controller
             ));
         }
 
-        return $this->render('Post/editSinglePost.html.twig', array(
+        return $this->render('Admin/editSinglePost.html.twig', array(
             'form' => $form->createView()
         ));
     }
