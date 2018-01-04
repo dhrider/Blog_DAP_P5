@@ -6,5 +6,4 @@ $(document).ready(function () {
     $('#closeNewPostMessage').on('click',function () {
         $('#menuNewPost').get(0).click();
     });
-
 });

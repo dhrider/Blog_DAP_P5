@@ -17,7 +17,6 @@ class UserController extends Controller
 
         $form = $this->createForm(UserType::class, $user);
 
-
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid())
         {
             $hash = $this
@@ -34,7 +33,18 @@ class UserController extends Controller
             $em->persist($user);
             $em->flush();
 
-            return $this->redirectToRoute('login');
+            $success = true;
+
+            $session = $this->container->get('session');
+            $session
+                ->getFlashBag()
+                ->set('success', 'You\'ve been successfully registred. 
+                You can now login with your username & password.')
+            ;
+
+            return $this->redirectToRoute('login', array(
+                'success' => $success
+            ));
         }
 
         return $this->render(':User:registerUser.html.twig', array(

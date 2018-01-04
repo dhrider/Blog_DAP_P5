@@ -33,4 +33,9 @@
             </div>
         </div>
     </div>
+    {% if app.request.get('success') %}
+        <div class="row">
+            {% include 'messageFlash.html.twig' %}
+        </div>
+    {% endif %}
 {% endblock %}
