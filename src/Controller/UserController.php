@@ -51,4 +51,49 @@ class UserController extends Controller
             'form' => $form->createView()
         ));
     }
+
+    public function recoveryUsernameUserAction(Request $request, \Swift_Mailer $mailer)
+    {
+        if ($request->isMethod('POST'))
+        {
+            $em = $this->getDoctrine()->getManager();
+
+            $user = $em->getRepository(User::class)->findByEmail($request->request->get('email'));
+
+            if ($user)
+            {
+                $date = new \DateTime();
+
+                $email = new \Swift_Message;
+
+                $email
+                    ->setSubject('Philippe Bordmann Blog Message')
+                    ->setFrom('p_bordmann@orange.fr')
+                    ->setTo($user->getEmail())
+                    ->setContentType('text/html')
+                    ->setBody($this->render(':User:recoveryUsernameUserEmail.html.twig', array(
+                        'user' => $user,
+                        'date' => $date
+                    )))
+                ;
+
+                $mailer->send($email);
+
+                $session = $this->container->get('session');
+                $session->getFlashBag()->set('success', 'Your username has been successfully send to your email.');
+            }
+            else
+            {
+                $session = $this->container->get('session');
+                $session->getFlashBag()->set('warning', 'This email doesn\'t exist.');
+            }
+        }
+
+        return $this->render(':User:recoveryUsernameUser.html.twig');
+    }
+
+    public function recoveryPasswordUserAction(Request $request)
+    {
+
+    }
 }

@@ -21,6 +21,7 @@ post:
 
 
 
+
 contact:
     path: /contact
     defaults: {_controller: App\Controller\ContactController:contactAction}
@@ -32,6 +33,14 @@ contact:
 register_user:
     path: /register
     defaults: {_controller: App\Controller\UserController:registerUserAction}
+
+recovery_username_user:
+    path: /recovery/username
+    defaults: {_controller: App\Controller\UserController:recoveryUsernameUserAction}
+
+recovery_password_user:
+    path: /recovery/username
+    defaults: {_controller: App\Controller\UserController:recoveryPasswordUserAction}
 
 
 
@@ -63,6 +72,7 @@ login_check:
 logout:
     path: /logout
     defaults: {_controller: App\Controller\SecurityController:logoutAction}
+
 
 
 
