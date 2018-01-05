@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block pageContent %}
+    <div class="row">
+        <div class="col-sm-offset-4 col-sm-4">
+            <div class="well" id="registrationForm">
+                <form action="#" method="post">
+                    <fieldset>
+                        <legend>Username recovery</legend>
+                        <div class="form-group">
+                            <label class="loginLabel" for="email">Enter your E-mail</label>
+                            <input type="email" id="email" name="email" class="form-control" />
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                           Re-send your username
+                        </button>
+                    </fieldset>
+                </form>
+                <a href="{{ path('login') }}">Return to login page</a>
+            </div>
+            {% include 'messageFlash.html.twig' %}
+        </div>
+    </div>
+{% endblock %}
