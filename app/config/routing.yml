@@ -49,6 +49,7 @@ new_password_user:
 
 
 
+
 post_edit:
     path: admin/post/edit/{id}
     defaults: {_controller: App\Controller\PostController:editSinglePost}
@@ -56,7 +57,7 @@ post_edit:
             id: '\d+'
 
 newPost:
-    path: admin//newPost
+    path: admin/newPost
     defaults: {_controller: App\Controller\PostController:newPostAction}
 
 
