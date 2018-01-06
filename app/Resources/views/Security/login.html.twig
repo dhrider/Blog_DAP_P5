@@ -21,7 +21,7 @@
                         <div class="form-group">
                             <label class="loginLabel" for="password">Password</label>
                             <input type="password" id="password" name="_password" class="form-control" />
-                            <a href="{{ path('recovery_password_user') }}">Forgot your Password ?</a>
+                            <a href="{{ path('reset_password_user') }}">Forgot your Password ?</a>
                         </div>
                         <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
                         <button type="submit" class="btn btn-primary">
