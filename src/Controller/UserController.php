@@ -92,8 +92,57 @@ class UserController extends Controller
         return $this->render(':User:recoveryUsernameUser.html.twig');
     }
 
-    public function recoveryPasswordUserAction(Request $request)
+    public function resetPasswordUserAction(Request $request, \Swift_Mailer $mailer)
     {
+        if ($request->isMethod('POST'))
+        {
+            $em = $this->getDoctrine()->getManager();
 
+            $user = $em->getRepository(User::class)->findByEmail($request->request->get('email'));
+
+            if ($user)
+            {
+                $email = new \Swift_Message;
+
+                $email
+                    ->setSubject('Philippe Bordmann Blog Message')
+                    ->setFrom('p_bordmann@orange.fr')
+                    ->setTo($user->getEmail())
+                    ->setContentType('text/html')
+                    ->setBody($this->render(':User:resetPasswordUserEmail.html.twig', array(
+                        'date' => new \DateTime(),
+                        'token' => $user->getToken()
+                    )))
+                ;
+
+                $mailer->send($email);
+
+                $session = $this->container->get('session');
+                $session->getFlashBag()->set('success', 'A link for resetting your password has been send to your email.');
+            }
+            else
+            {
+                $session = $this->container->get('session');
+                $session->getFlashBag()->set('warning', 'This email doesn\'t exist.');
+            }
+        }
+
+        return $this->render(':User:resetPasswordUser.html.twig');
+    }
+
+    public function newPasswordUserAction(User $user)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $userExist = $em->getRepository(User::class)->findOneBy(array("token" => $user->getToken()));
+
+        if ($userExist)
+        {
+            return $this->render(':User:newPasswordUser.html.twig');
+        }
+        else
+        {
+            return $this->redirectToRoute('home');
+        }
     }
 }

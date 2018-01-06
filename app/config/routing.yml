@@ -35,13 +35,16 @@ register_user:
     defaults: {_controller: App\Controller\UserController:registerUserAction}
 
 recovery_username_user:
-    path: /recovery/username
+    path: /recoveryusername
     defaults: {_controller: App\Controller\UserController:recoveryUsernameUserAction}
 
-recovery_password_user:
-    path: /recovery/username
-    defaults: {_controller: App\Controller\UserController:recoveryPasswordUserAction}
+reset_password_user:
+    path: /resetpassword
+    defaults: {_controller: App\Controller\UserController:resetPasswordUserAction}
 
+new_password_user:
+    path: /newpassword/{token}
+    defaults: {_controller: App\Controller\UserController:newPasswordUserAction}
 
 
 
@@ -79,4 +82,3 @@ logout:
 
 gregwar_captcha_routing:
     resource: "@GregwarCaptchaBundle/Resources/config/routing/routing.yml"
-
