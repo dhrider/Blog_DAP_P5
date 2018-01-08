@@ -33,7 +33,7 @@
         <a href="{{ path('listPosts_paginated') }}" type="button" class="btn btn-primary pull-left">
             Return to the Posts list
         </a>
-        {% if app.user %}
+        {% if is_granted('ROLE_ADMIN') %}
             <a href="{{ path('post_edit', {'id': post.id}) }}" type="button" class="btn btn-danger pull-right" title="Add">
                 <span class="glyphicon glyphicon-pencil"> Edit this post</span>
             </a>

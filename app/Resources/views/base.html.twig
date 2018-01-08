@@ -44,7 +44,7 @@
                             <li class="page-scroll">
                                 <a href="{{ asset('pdf/CV_Philippe.pdf') }}">Cv</a>
                             </li>
-                            {% if app.user %}
+                            {% if is_granted('ROLE_ADMIN') %}
                                 <li class="page-scroll dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Posts Admin</a>
                                     <ul class="dropdown-menu">
