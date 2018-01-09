@@ -19,8 +19,8 @@ class UserController extends Controller
 
         $session = $this->container->get('session');
 
-        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid())
-        {
+        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+
             $hash = $this
                 ->get('security.encoder_factory')
                 ->getEncoder($user)
@@ -55,16 +55,14 @@ class UserController extends Controller
 
     public function recoveryUsernameUserAction(Request $request, \Swift_Mailer $mailer)
     {
-        if ($request->isMethod('POST'))
-        {
+        if ($request->isMethod('POST')) {
             $em = $this->getDoctrine()->getManager();
 
             $user = $em->getRepository(User::class)->findByEmail($request->request->get('email'));
 
             $session = $this->container->get('session');
 
-            if ($user)
-            {
+            if ($user) {
                 $date = new \DateTime();
 
                 $email = new \Swift_Message;
@@ -83,9 +81,7 @@ class UserController extends Controller
                 $mailer->send($email);
 
                 $session->getFlashBag()->set('success', 'Your username has been successfully send to your email.');
-            }
-            else
-            {
+            } else {
                 $session->getFlashBag()->set('warning', 'This email doesn\'t exist.');
             }
         }
@@ -95,16 +91,14 @@ class UserController extends Controller
 
     public function resetPasswordUserAction(Request $request, \Swift_Mailer $mailer)
     {
-        if ($request->isMethod('POST'))
-        {
+        if ($request->isMethod('POST')) {
             $em = $this->getDoctrine()->getManager();
 
             $user = $em->getRepository(User::class)->findByEmail($request->request->get('email'));
 
             $session = $this->container->get('session');
 
-            if ($user)
-            {
+            if ($user) {
                 $user->setToken(hash("sha512", uniqid()));
 
                 $em->persist($user);
@@ -126,9 +120,7 @@ class UserController extends Controller
                 $mailer->send($email);
 
                 $session->getFlashBag()->set('success', 'A link for resetting your password has been send to your email.');
-            }
-            else
-            {
+            } else {
                 $session = $this->container->get('session');
                 $session->getFlashBag()->set('warning', 'This email doesn\'t exist.');
             }
@@ -145,18 +137,14 @@ class UserController extends Controller
 
         $session = $this->container->get('session');
 
-        if ($request->isMethod('POST'))
-        {
-            if ($request->request->get('password1') !== $request->request->get('password2'))
-            {
+        if ($request->isMethod('POST')) {
+            if ($request->request->get('password1') !== $request->request->get('password2')) {
                 $session->getFlashBag()->set('warning', 'The password are not the same.');
 
                 return $this->redirectToRoute('new_password_user', array(
                     'token' => $user->getToken()
                 ));
-            }
-            else
-            {
+            } else {
                 $hash = $this
                     ->get('security.encoder_factory')
                     ->getEncoder($user)
@@ -177,12 +165,9 @@ class UserController extends Controller
             }
         }
 
-        if ($userExist)
-        {
+        if ($userExist) {
             return $this->render(':User:newPasswordUser.html.twig');
-        }
-        else
-        {
+        } else {
             $session->getFlashBag()->set('warning', 'The link for resetting your password is not valid.');
 
             return $this->redirectToRoute('login');
