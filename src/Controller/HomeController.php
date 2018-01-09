@@ -19,7 +19,7 @@ class HomeController extends Controller
     {
         $home = false;
 
-        return $this->render('Post/newPost.html.twig', array(
+        return $this->render('Admin/newPost.html.twig', array(
             'home' => $home
         ));
     }

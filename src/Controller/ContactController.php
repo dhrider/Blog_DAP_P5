@@ -23,8 +23,7 @@ class ContactController extends Controller
         // variable utilisée pour tester le résultat de l'envoi du message
         $success = false;
 
-        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid())
-        {
+        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
             $contactEvent = new ContactEvent($contact);
 
             $this->get('event_dispatcher')->dispatch(ContactEvent::CONTACT_SEND, $contactEvent);
