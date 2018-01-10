@@ -35,4 +35,17 @@ class CommentController extends Controller
 
         return $this->redirectToRoute('manageComments');
     }
+
+    public function validationCommentAction(Comment $comment)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $comment->setValidate(true);
+        $comment->setDateValidate(new \DateTime());
+
+        $em->persist($comment);
+        $em->flush();
+
+        return $this->redirectToRoute('manageComments');
+    }
 }

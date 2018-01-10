@@ -1,0 +1,20 @@
+<button type="button" class="btn btn-xs" title="Editer" data-toggle="modal" data-target="#commentEditDialog{{ comment.id }}">
+    <span class="glyphicon glyphicon-ok"></span>
+</button>
+<div class="modal fade" id="commentEditDialog{{ comment.id }}" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Confirm Validation of comment</h4>
+            </div>
+            <div class="modal-body">
+                Do you really want to validate the comment from the {{ comment.dateCreation | date('d-m-Y') }} written by {{ comment.author }} ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                <a href="{{ path('validationComment', { 'id': comment.id }) }}" class="btn btn-danger">Yes</a>
+            </div>
+        </div>
+    </div>
+</div>

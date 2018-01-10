@@ -31,7 +31,10 @@
                             {% endif %}
                         </td>
                         <td>{{ comment.dateCreation | date('d-m-Y') }} à {{ comment.dateCreation | date('H:i:s')}}</td>
-                        <td>{{ include(':Admin/Comment:commentModalDelete.html.twig') }}</td>
+                        <td>
+                            {{ include(':Admin/Comment:commentModalValidation.html.twig') }}
+                            {{ include(':Admin/Comment:commentModalDelete.html.twig') }}
+                        </td>
                     </tr>
                 {% endfor %}
                 </tbody>
