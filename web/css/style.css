@@ -87,3 +87,16 @@ h1, h2, h3, h4, h5, h6 {
 table {
     background-color: #0C2032;
 }
+
+.modal-content {
+    color: #00AA88;
+    background-color: #0C2032;
+}
+
+.modal-title {
+    color: #00AA88;
+}
+
+th {
+    text-align: center;
+}
