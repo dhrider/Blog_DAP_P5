@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block pageContent %}
-    <div class="col-md-10">
+    <div class="col-md-12">
         <div class="container-fluid">
             <h2><u>Comments Validation</u></h2>
             <br/>
@@ -18,14 +18,14 @@
                 {% for comment in pager.currentPageResults %}
                     <tr>
                         <td class="commentadminTabCol">
-                            <a href="#" title="Tous les commentaires de {{ comment.author }}">
+                            <a href="#" title="All comments wrote by {{ comment.author }}">
                                 {{ comment.author }}
                             </a>
                         </td>
                         <td class="commentadminTabCol">
-                            {% if comment.content | length >= 65 %}
-                                {{ comment.content  }}
-                                {{ include(':Admin/Comment:commentModalAuthor.html.twig') }}
+                            {% if comment.content | length >= 50 %}
+                                {{ comment.content | truncate(50) }}
+                                {{ include(':Admin/Comment:commentModal.html.twig') }}
                             {% else %}
                                 {{ comment.content }}
                             {% endif %}

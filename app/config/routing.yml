@@ -54,6 +54,12 @@ manageComments:
     requirements:
         page: '\d+'
 
+deleteComment:
+    path: admin/deleteComment/{id}
+    defaults: {_controller: App\Controller\Admin\CommentController:deleteCommentAction}
+    requirements:
+        id: '\d+'
+
 login:
      path: /login
      defaults: {_controller: App\Controller\SecurityController:loginAction}

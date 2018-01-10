@@ -1,0 +1,20 @@
+<button type="button" class="btn btn-danger btn-xs" title="Supprimer" data-toggle="modal" data-target="#commentDeleteDialog{{ comment.id }}">
+    <span class="glyphicon glyphicon-remove"></span>
+</button>
+<div class="modal fade" id="commentDeleteDialog{{ comment.id }}" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Delete confirmation</h4>
+            </div>
+            <div class="modal-body">
+                Do you really want to delete the comment written by {{ comment.author }} the {{ comment.dateCreation | date('d-m-Y') }} ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                <a href="{{ path('deleteComment', { 'id': comment.id }) }}" class="btn btn-danger">Yes</a>
+            </div>
+        </div>
+    </div>
+</div>

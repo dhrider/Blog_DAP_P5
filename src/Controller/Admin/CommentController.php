@@ -23,4 +23,16 @@ class CommentController extends Controller
             'pager' => $pager
         ));
     }
+
+    public function deleteCommentAction(Comment $comment)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $commentToDelete = $em->getRepository(Comment::class)->find($comment->getId());
+
+        $em->remove($commentToDelete);
+        $em->flush();
+
+        return $this->redirectToRoute('manageComments');
+    }
 }
