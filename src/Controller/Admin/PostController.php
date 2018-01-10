@@ -33,13 +33,13 @@ class PostController extends Controller
             ));
         }
 
-        return $this->render('Admin/newPost.html.twig', array(
+        return $this->render('Admin/Post/newPost.html.twig', array(
             'form' => $form->createView(),
             'success' => $success
         ));
     }
 
-    public function editSinglePost(Post $post, Request $request)
+    public function editSinglePostAction(Post $post, Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -56,8 +56,13 @@ class PostController extends Controller
             ));
         }
 
-        return $this->render('Admin/editSinglePost.html.twig', array(
+        return $this->render('Admin/Post/editSinglePost.html.twig', array(
             'form' => $form->createView()
         ));
+    }
+
+    public function managePostsAction()
+    {
+        return $this->render(':Admin/Post:managePosts.html.twig');
     }
 }
