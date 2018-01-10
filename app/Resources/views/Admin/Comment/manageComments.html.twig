@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block pageContent %}
+    <div class="col-md-10">
+        <div class="container-fluid">
+            <h2><u>Comments Validation</u></h2>
+            <br/>
+            <table class="table table-bordered" id="tableauComments">
+                <thead>
+                    <tr>
+                        <th>Author</th>
+                        <th>Comment</th>
+                        <th>Date</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="corpsTableauComments">
+                {% for comment in pager.currentPageResults %}
+                    <tr>
+                        <td class="commentadminTabCol">
+                            <a href="#" title="Tous les commentaires de {{ comment.author }}">
+                                {{ comment.author }}
+                            </a>
+                        </td>
+                        <td class="commentadminTabCol">
+                            {% if comment.content | length >= 65 %}
+                                {{ comment.content  }}
+                                {{ include(':Admin/Comment:commentModalAuthor.html.twig') }}
+                            {% else %}
+                                {{ comment.content }}
+                            {% endif %}
+                        </td>
+                        <td>{{ comment.dateCreation | date('d-m-Y') }} à {{ comment.dateCreation | date('H:i:s')}}</td>
+                        <td>{{ include(':Admin/Comment:commentModalDelete.html.twig') }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <div class="pagerfanta">
+                {{ pagerfanta(pager, 'twitter_bootstrap3', {'routeName' : 'blog_admin_comments_paginated'}) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

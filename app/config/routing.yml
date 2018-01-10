@@ -34,15 +34,25 @@ new_password_user:
     path: /newpassword/{token}
     defaults: {_controller: App\Controller\UserController:newPasswordUserAction}
 
-post_edit:
-    path: admin/post/edit/{id}
-    defaults: {_controller: App\Controller\PostController:editSinglePost}
-    requirements:
-            id: '\d+'
-
 newPost:
     path: admin/newPost
-    defaults: {_controller: App\Controller\PostController:newPostAction}
+    defaults: {_controller: App\Controller\Admin\PostController:newPostAction}
+
+managePosts:
+    path: admin/managePosts
+    defaults: {_controller: App\Controller\Admin\PostController:managePostsAction}
+
+post_edit:
+    path: admin/post/edit/{id}
+    defaults: {_controller: App\Controller\Admin\PostController:editSinglePost}
+    requirements:
+        id: '\d+'
+
+manageComments:
+    path: admin/manageComments/{page}
+    defaults: {_controller: App\Controller\Admin\CommentController:manageCommentsAction, page: 1}
+    requirements:
+        page: '\d+'
 
 login:
      path: /login
