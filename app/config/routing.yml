@@ -60,6 +60,12 @@ deleteComment:
     requirements:
         id: '\d+'
 
+validationComment:
+    path: admin/validationComment/{id}
+    defaults: {_controller: App\Controller\Admin\CommentController:validationCommentAction}
+    requirements:
+        id: '\d+'
+
 login:
      path: /login
      defaults: {_controller: App\Controller\SecurityController:loginAction}
