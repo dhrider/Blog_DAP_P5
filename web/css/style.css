@@ -98,5 +98,11 @@ table {
 }
 
 th {
+    color: #00b3ee;
     text-align: center;
+}
+
+.table-striped>tbody>tr:nth-child(odd)>td,
+.table-striped>tbody>tr:nth-child(odd)>th {
+    background-color: #2C3E50; // Choose your own color here
 }

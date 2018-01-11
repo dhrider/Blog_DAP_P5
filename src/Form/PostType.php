@@ -44,14 +44,6 @@ class PostType extends AbstractType
                    'placeholder' => 'Enter your Name'
                )
            ))
-           ->add('captcha', CaptchaType::class, array(
-               'label' => false,
-               'reload' => true,
-               'as_url' => true,
-               'attr' => array(
-                   'placeholder' => 'Enter the same text as above'
-               )
-           ))
            ->add('Submit', SubmitType::class, array(
                'attr' => array(
                    'class' => 'btn-primary pull-left'

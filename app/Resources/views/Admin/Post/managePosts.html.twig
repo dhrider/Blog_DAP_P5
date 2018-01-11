@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <h2><u>Manage Posts</u></h2>
             <br/>
-            <table class="table table-bordered" id="tableauComments">
+            <table class="table table-bordered table-striped" id="tableauComments">
                 <thead>
                 <tr>
                     <th>Author</th>
@@ -19,12 +19,10 @@
                 <tbody id="corpsTableauComments">
                 {% for post in pager.currentPageResults %}
                     <tr>
-                        <td class="commentadminTabCol">
-                            <a href="#" title="All comments wrote by {{ post.author }}">
-                                {{ post.author }}
-                            </a>
+                        <td>{{ post.author }}</td>
+                        <td>
+                            <a href="{{ path('post', {'id' : post.id}) }}" title="Go to this Post">{{ post.title }}</a>
                         </td>
-                        <td>{{ post.title }}</td>
                         <td>
                             {% if post.chapo | length >= 50 %}
                                 {{ post.chapo | truncate(50) }}
@@ -32,7 +30,7 @@
                                 {{ post.chapo }}
                             {% endif %}
                         </td>
-                        <td class="commentadminTabCol">
+                        <td>
                             {% if post.content | length >= 50 %}
                                 {{ post.content | truncate(50) }}
                             {% else %}
@@ -41,6 +39,9 @@
                         </td>
                         <td>{{ post.dateCreation | date('d-m-Y') }} à {{ post.dateCreation | date('H:i:s')}}</td>
                         <td>
+                            <button type="button" class="btn btn-default btn-xs" title="Update">
+                                <a href="{{ path('updatePost', {'id' : post.id}) }}"><span class="glyphicon glyphicon-edit"></span></a>
+                            </button>
                             {{ include(':Admin/Post:postModalDelete.html.twig') }}
                         </td>
                     </tr>
