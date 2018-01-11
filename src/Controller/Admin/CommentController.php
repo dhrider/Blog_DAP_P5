@@ -4,7 +4,6 @@ namespace App\Controller\Admin;
 
 use App\Entity\Comment;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
 use Pagerfanta\Pagerfanta;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 
