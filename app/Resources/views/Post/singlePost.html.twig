@@ -34,7 +34,7 @@
             Return to the Posts list
         </a>
         {% if is_granted('ROLE_ADMIN') %}
-            <a href="{{ path('post_edit', {'id': post.id}) }}" type="button" class="btn btn-danger pull-right" title="Add">
+            <a href="{{ path('updatePost', {'id': post.id}) }}" type="button" class="btn btn-danger pull-right" title="Add">
                 <span class="glyphicon glyphicon-pencil"> Edit this post</span>
             </a>
         {% endif %}

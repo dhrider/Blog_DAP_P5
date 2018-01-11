@@ -6,6 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Post;
 use App\Form\PostType;
+use Pagerfanta\Pagerfanta;
+use Pagerfanta\Adapter\DoctrineORMAdapter;
 
 class PostController extends Controller
 {
@@ -39,7 +41,7 @@ class PostController extends Controller
         ));
     }
 
-    public function editSinglePostAction(Post $post, Request $request)
+    public function updatePostAction(Post $post, Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -56,13 +58,34 @@ class PostController extends Controller
             ));
         }
 
-        return $this->render('Admin/Post/editSinglePost.html.twig', array(
+        return $this->render(':Admin/Post:updatePost.html.twig', array(
             'form' => $form->createView()
         ));
     }
 
-    public function managePostsAction()
+    public function managePostsAction($page)
     {
-        return $this->render(':Admin/Post:managePosts.html.twig');
+        $em = $this->getDoctrine()->getManager();
+
+        $adapter = new DoctrineORMAdapter( $em->getRepository(Post::class)->findAllPostsDescending(), false);
+        $pager = new Pagerfanta($adapter);
+        $pager->setMaxPerPage(5);
+        $pager->setCurrentPage($page);
+
+        return $this->render(':Admin/Post:managePosts.html.twig', array(
+            'pager' => $pager
+        ));
+    }
+
+    public function deletePostAction(Post $post)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $postToDelete = $em->getRepository(Post::class)->find($post->getId());
+
+        $em->remove($postToDelete);
+        $em->flush();
+
+        return $this->redirectToRoute('managePosts');
     }
 }

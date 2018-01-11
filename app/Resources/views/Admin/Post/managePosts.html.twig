@@ -1,5 +1,55 @@
 {% extends 'base.html.twig' %}
 
 {% block pageContent %}
-
+    <div class="col-md-12">
+        <div class="container-fluid">
+            <h2><u>Manage Posts</u></h2>
+            <br/>
+            <table class="table table-bordered" id="tableauComments">
+                <thead>
+                <tr>
+                    <th>Author</th>
+                    <th>Title</th>
+                    <th>Chapo</th>
+                    <th>Content</th>
+                    <th>Date</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody id="corpsTableauComments">
+                {% for post in pager.currentPageResults %}
+                    <tr>
+                        <td class="commentadminTabCol">
+                            <a href="#" title="All comments wrote by {{ post.author }}">
+                                {{ post.author }}
+                            </a>
+                        </td>
+                        <td>{{ post.title }}</td>
+                        <td>
+                            {% if post.chapo | length >= 50 %}
+                                {{ post.chapo | truncate(50) }}
+                            {% else %}
+                                {{ post.chapo }}
+                            {% endif %}
+                        </td>
+                        <td class="commentadminTabCol">
+                            {% if post.content | length >= 50 %}
+                                {{ post.content | truncate(50) }}
+                            {% else %}
+                                {{ post.content }}
+                            {% endif %}
+                        </td>
+                        <td>{{ post.dateCreation | date('d-m-Y') }} à {{ post.dateCreation | date('H:i:s')}}</td>
+                        <td>
+                            {{ include(':Admin/Post:postModalDelete.html.twig') }}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <div class="pagerfanta">
+                {{ pagerfanta(pager, 'twitter_bootstrap3', {'routeName' : 'managePosts'}) }}
+            </div>
+        </div>
+    </div>
 {% endblock %}
