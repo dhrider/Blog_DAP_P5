@@ -53,9 +53,7 @@ class PostController extends Controller
             $em->persist($post);
             $em->flush();
 
-            return $this->redirectToRoute('post', array(
-                'id' => $post->getId()
-            ));
+            return $this->redirectToRoute('managePosts');
         }
 
         return $this->render(':Admin/Post:updatePost.html.twig', array(

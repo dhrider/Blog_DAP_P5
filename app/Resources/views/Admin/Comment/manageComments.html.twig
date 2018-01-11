@@ -3,7 +3,7 @@
 {% block pageContent %}
     <div class="col-md-12">
         <div class="container-fluid">
-            <h2><u>Comments Validation</u></h2>
+            <h2><u>Manage Comments</u></h2>
             <br/>
             <table class="table table-bordered" id="tableauComments">
                 <thead>
@@ -18,12 +18,8 @@
                 <tbody id="corpsTableauComments">
                 {% for comment in pager.currentPageResults %}
                     <tr>
-                        <td class="commentadminTabCol">
-                            <a href="#" title="All comments wrote by {{ comment.author }}">
-                                {{ comment.author }}
-                            </a>
-                        </td>
-                        <td class="commentadminTabCol">
+                        <td>{{ comment.author }}</td>
+                        <td>
                             {% if comment.content | length >= 50 %}
                                 {{ comment.content | truncate(50) }}
                                 {{ include(':Admin/Comment:commentModal.html.twig') }}
