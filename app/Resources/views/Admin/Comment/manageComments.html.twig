@@ -10,6 +10,7 @@
                     <tr>
                         <th>Author</th>
                         <th>Comment</th>
+                        <th>Post title</th>
                         <th>Date</th>
                         <th>Action</th>
                     </tr>
@@ -30,6 +31,7 @@
                                 {{ comment.content }}
                             {% endif %}
                         </td>
+                        <td>{{ comment.post.chapo }}</td>
                         <td>{{ comment.dateCreation | date('d-m-Y') }} à {{ comment.dateCreation | date('H:i:s')}}</td>
                         <td>
                             {{ include(':Admin/Comment:commentModalValidation.html.twig') }}
