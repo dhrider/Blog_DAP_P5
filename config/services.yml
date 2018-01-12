@@ -15,7 +15,7 @@ services:
         public: false
 
     App\Controller\:
-        resource: '../../src/Controller'
+        resource: '../src/Controller'
         public: true
         tags: ['controller.service_arguments']
 

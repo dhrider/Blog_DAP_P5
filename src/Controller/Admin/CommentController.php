@@ -18,7 +18,7 @@ class CommentController extends Controller
         $pager->setMaxPerPage(10);
         $pager->setCurrentPage($page);
 
-        return $this->render(':Admin/Comment:manageComments.html.twig', array(
+        return $this->render('Admin/Comment/manageComments.html.twig', array(
             'pager' => $pager
         ));
     }
