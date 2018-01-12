@@ -56,7 +56,7 @@ class PostController extends Controller
             return $this->redirectToRoute('managePosts');
         }
 
-        return $this->render(':Admin/Post:updatePost.html.twig', array(
+        return $this->render('Admin/Post/updatePost.html.twig', array(
             'form' => $form->createView()
         ));
     }
@@ -70,7 +70,7 @@ class PostController extends Controller
         $pager->setMaxPerPage(5);
         $pager->setCurrentPage($page);
 
-        return $this->render(':Admin/Post:managePosts.html.twig', array(
+        return $this->render(':Admin/Post/managePosts.html.twig', array(
             'pager' => $pager
         ));
     }

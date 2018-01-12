@@ -72,7 +72,7 @@ class UserController extends Controller
                     ->setFrom('p_bordmann@orange.fr')
                     ->setTo($user->getEmail())
                     ->setContentType('text/html')
-                    ->setBody($this->render(':User:recoveryUsernameUserEmail.html.twig', array(
+                    ->setBody($this->render('User/recoveryUsernameUserEmail.html.twig', array(
                         'user' => $user,
                         'date' => $date
                     )))
