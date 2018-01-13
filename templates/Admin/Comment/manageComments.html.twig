@@ -22,7 +22,7 @@
                         <td>
                             {% if comment.content | length >= 50 %}
                                 {{ comment.content | truncate(50) }}
-                                {{ include(':Admin/Comment:commentModal.html.twig') }}
+                                {{ include('Admin/Comment/commentModal.html.twig') }}
                             {% else %}
                                 {{ comment.content }}
                             {% endif %}
@@ -30,8 +30,8 @@
                         <td>{{ comment.post.chapo }}</td>
                         <td>{{ comment.dateCreation | date('d-m-Y') }} à {{ comment.dateCreation | date('H:i:s')}}</td>
                         <td>
-                            {{ include(':Admin/Comment:commentModalValidation.html.twig') }}
-                            {{ include(':Admin/Comment:commentModalDelete.html.twig') }}
+                            {{ include('Admin/Comment/commentModalValidation.html.twig') }}
+                            {{ include('Admin/Comment/commentModalDelete.html.twig') }}
                         </td>
                     </tr>
                 {% endfor %}

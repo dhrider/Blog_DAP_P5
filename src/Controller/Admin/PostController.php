@@ -70,7 +70,7 @@ class PostController extends Controller
         $pager->setMaxPerPage(5);
         $pager->setCurrentPage($page);
 
-        return $this->render(':Admin/Post/managePosts.html.twig', array(
+        return $this->render('Admin/Post/managePosts.html.twig', array(
             'pager' => $pager
         ));
     }

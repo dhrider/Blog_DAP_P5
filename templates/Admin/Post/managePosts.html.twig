@@ -42,7 +42,7 @@
                             <button type="button" class="btn btn-default btn-xs" title="Update">
                                 <a href="{{ path('updatePost', {'id' : post.id}) }}"><span class="glyphicon glyphicon-edit"></span></a>
                             </button>
-                            {{ include(':Admin/Post:postModalDelete.html.twig') }}
+                            {{ include('Admin/Post/postModalDelete.html.twig') }}
                         </td>
                     </tr>
                 {% endfor %}
