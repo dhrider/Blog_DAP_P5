@@ -1,20 +1,19 @@
-
-    {% for comment in comments %}
-        {% if comment.validate %}
-            <div class=" comment {{ cycle(['odd', 'even'], loop.index0) }} comment" id="comment-{{ comment.id }}">
-                <header class="commentHeader">
-                    <p>
-                            <span><span class="dateModif">{{ comment.author }}</span> a commenté le </span>
-                            <span><span class="dateModif">{{ comment.dateCreation | date('d-m-Y') }}</span> à </span>
-                            <span class="dateModif">{{ comment.dateCreation | date('H:i:s')}}</span>
-                    </p>
-                </header>
-                <p>{{ comment.content }}</p>
-            </div>
-        {% endif %}
-    {% else %}
-        <p>No comment</p>
-    {% endfor %}
+{% for comment in comments %}
+    {% if comment.validate %}
+        <div class=" comment {{ cycle(['odd', 'even'], loop.index0) }} comment" id="comment-{{ comment.id }}">
+            <header class="commentHeader">
+                <p>
+                        <span><span class="dateModif">{{ comment.author }}</span> a commenté le </span>
+                        <span><span class="dateModif">{{ comment.dateCreation | date('d-m-Y') }}</span> à </span>
+                        <span class="dateModif">{{ comment.dateCreation | date('H:i:s')}}</span>
+                </p>
+            </header>
+            <p>{{ comment.content }}</p>
+        </div>
+    {% endif %}
+{% else %}
+    <p>No comment</p>
+{% endfor %}
 <hr/>
 <div class="container-fluid col-md-12" id="commentForm">
     <h4 id="commentFormTitle">Add your Comment</h4>

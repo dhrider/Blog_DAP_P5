@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\PasswordResetType;
 use App\Form\UserType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -48,7 +49,7 @@ class UserController extends Controller
             ));
         }
 
-        return $this->render(':User:registerUser.html.twig', array(
+        return $this->render('User/registerUser.html.twig', array(
             'form' => $form->createView()
         ));
     }
@@ -86,7 +87,7 @@ class UserController extends Controller
             }
         }
 
-        return $this->render(':User:recoveryUsernameUser.html.twig');
+        return $this->render('User/recoveryUsernameUser.html.twig');
     }
 
     public function resetPasswordUserAction(Request $request, \Swift_Mailer $mailer)
@@ -111,7 +112,7 @@ class UserController extends Controller
                     ->setFrom('p_bordmann@orange.fr')
                     ->setTo($user->getEmail())
                     ->setContentType('text/html')
-                    ->setBody($this->render(':User:resetPasswordUserEmail.html.twig', array(
+                    ->setBody($this->render('User/resetPasswordUserEmail.html.twig', array(
                         'date' => new \DateTime(),
                         'token' => $user->getToken()
                     )))
@@ -126,7 +127,7 @@ class UserController extends Controller
             }
         }
 
-        return $this->render(':User:resetPasswordUser.html.twig');
+        return $this->render('User/resetPasswordUser.html.twig');
     }
 
     public function newPasswordUserAction(User $user, Request $request)
@@ -135,38 +136,34 @@ class UserController extends Controller
 
         $userExist = $em->getRepository(User::class)->findOneBy(array("token" => $user->getToken()));
 
+        $form =$this->createForm(PasswordResetType::class, $user);
+
         $session = $this->container->get('session');
 
-        if ($request->isMethod('POST')) {
-            if ($request->request->get('password1') !== $request->request->get('password2')) {
-                $session->getFlashBag()->set('warning', 'The password are not the same.');
+        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+            $hash = $this
+                ->get('security.encoder_factory')
+                ->getEncoder($user)
+                ->encodePassword($form->getData()->getPassword(), $user->getSalt())
+            ;
 
-                return $this->redirectToRoute('new_password_user', array(
-                    'token' => $user->getToken()
-                ));
-            } else {
-                $hash = $this
-                    ->get('security.encoder_factory')
-                    ->getEncoder($user)
-                    ->encodePassword($request->request->get('password1'), $user->getSalt())
-                ;
+            $user->setPassword($hash);
 
-                $user->setPassword($hash);
+            $em->persist($user);
+            $em->flush();
 
-                $em->persist($user);
-                $em->flush();
+            $success = true;
+            $session->getFlashBag()->set('success', 'Your new password is now valid.');
 
-                $success = true;
-                $session->getFlashBag()->set('success', 'Your new password is now valid.');
-
-                return $this->redirectToRoute('login', array(
-                    'success' => $success
-                ));
-            }
+            return $this->redirectToRoute('login', array(
+                'success' => $success
+            ));
         }
 
         if ($userExist) {
-            return $this->render(':User:newPasswordUser.html.twig');
+            return $this->render('User/newPasswordUser.html.twig', array(
+                'form' => $form->createView()
+            ));
         } else {
             $session->getFlashBag()->set('warning', 'The link for resetting your password is not valid.');
 
