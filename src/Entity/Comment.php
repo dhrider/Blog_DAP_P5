@@ -29,7 +29,7 @@ class Comment
 
     /**
      * @ORM\Column(name="author", type="string")
-     * @Assert\NotBLank()
+     * @Assert\NotBlank()
      */
     private $author;
 

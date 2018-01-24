@@ -1,12 +1,13 @@
 <?php
 
-use Symfony\Component\HttpFoundation\Request;
 use App\Kernel;
-use Symfony\Component\Dotenv\Dotenv;
 use Symfony\Component\Debug\Debug;
+use Symfony\Component\Dotenv\Dotenv;
+use Symfony\Component\HttpFoundation\Request;
 
 require __DIR__.'/../vendor/autoload.php';
 
+// The check is to ensure we don't use .env in production
 if (!isset($_SERVER['APP_ENV'])) {
     (new Dotenv())->load(__DIR__.'/../.env');
 }
@@ -16,12 +17,7 @@ if ($_SERVER['APP_DEBUG'] ?? ('prod' !== ($_SERVER['APP_ENV'] ?? 'dev'))) {
     Debug::enable();
 }
 
-//$kernel = new Kernel('prod', false);
-
-//$kernel = new AppCache($kernel);
-
-// When using the HttpCache, you need to call the method in your front controller instead of relying on the configuration parameter
-//Request::enableHttpMethodParameterOverride();
+// Request::setTrustedProxies(['0.0.0.0/0'], Request::HEADER_FORWARDED);
 $kernel = new Kernel($_SERVER['APP_ENV'] ?? 'dev', $_SERVER['APP_DEBUG'] ?? ('prod' !== ($_SERVER['APP_ENV'] ?? 'dev')));
 $request = Request::createFromGlobals();
 $response = $kernel->handle($request);
