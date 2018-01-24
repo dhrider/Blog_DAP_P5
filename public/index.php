@@ -16,7 +16,7 @@ if ($_SERVER['APP_DEBUG'] ?? ('prod' !== ($_SERVER['APP_ENV'] ?? 'dev'))) {
     Debug::enable();
 }
 
-$kernel = new Kernel('prod', false);
+//$kernel = new Kernel('prod', false);
 
 //$kernel = new AppCache($kernel);
 
