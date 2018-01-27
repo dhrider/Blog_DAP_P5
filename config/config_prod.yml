@@ -31,4 +31,6 @@ parameters:
     mailer_host: '%env(MAILER_HOST)%'
     mailer_user: '%env(MAILER_USER)%'
     mailer_password: '%env(MAILER_PASSWORD)%'
+    mailer_port: '%env(MAILER_PORT)%'
+    mailer_encryption: '%env(MAILER_ENCRYPTION)%'
     secret: '%env(SECRET)%'
