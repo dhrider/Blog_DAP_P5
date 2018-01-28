@@ -149,8 +149,14 @@
         {% endblock %}
 
         {% block javascripts %}
-            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-            <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+            <script src="https://code.jquery.com/jquery-3.3.1.js"
+                    integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+                    crossorigin="anonymous">
+            </script>
+            <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"
+                    integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E="
+                    crossorigin="anonymous">
+            </script>
             <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js"></script>
             <script src="{{ asset('js/freelancer.js') }}"></script>
             <script src="{{ asset('js/script.js') }}"></script>
