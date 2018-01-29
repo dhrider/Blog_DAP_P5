@@ -30,8 +30,12 @@
                         <td>{{ comment.post.chapo }}</td>
                         <td>{{ comment.dateCreation | date('d-m-Y') }} à {{ comment.dateCreation | date('H:i:s')}}</td>
                         <td>
-                            {{ include('Admin/Comment/commentModalValidation.html.twig') }}
-                            {{ include('Admin/Comment/commentModalDelete.html.twig') }}
+                            {% if comment.validate %}
+                                {{ include('Admin/Comment/commentModalDelete.html.twig') }}
+                            {% else %}
+                                {{ include('Admin/Comment/commentModalValidation.html.twig') }}
+                                {{ include('Admin/Comment/commentModalDelete.html.twig') }}
+                            {% endif %}
                         </td>
                     </tr>
                 {% endfor %}

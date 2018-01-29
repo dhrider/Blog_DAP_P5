@@ -20,14 +20,12 @@ class CommentRepository extends EntityRepository
         return $qb->getQuery()->getResult();
     }
 
-    public function findAllNonValidateComments()
+    public function findAllComments()
     {
         $qb = $this->createQueryBuilder('c');
 
         $qb
             ->select('c')
-            ->where('c.validate = :valid')
-            ->setParameter('valid', 0)
             ->orderBy('c.dateCreation', 'DESC')
         ;
 
