@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use App\Form\ContactType;
+use App\Form\Type\ContactType;
 use App\Event\ContactEvent;
 use App\Entity\Contact;
 
