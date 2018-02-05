@@ -82,9 +82,3 @@ services:
        class: Twig_Extensions_Extension_Text
        tags:
            - { name: twig.extension }
-
-rules:
-    php.use_exit_function:
-        enabled: true
-        ignore_files:
-            - public/config.php
