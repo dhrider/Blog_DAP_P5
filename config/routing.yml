@@ -10,7 +10,7 @@ listPosts_paginated:
 
 post:
     path: post/{id}
-    defaults: { _controller: App\Controller\PostController:singlePost }
+    defaults: { _controller: App\Controller\PostController:singlePostAction }
     requirements:
         id: '\d+'
 
