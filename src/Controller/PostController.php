@@ -27,7 +27,7 @@ class PostController extends Controller
         ));
     }
 
-    public function singlePost(Post $post, Request $request)
+    public function singlePostAction(Post $post, Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
