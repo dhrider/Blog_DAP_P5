@@ -68,8 +68,5 @@
             "file": "config/parameters.yml"
         },
         "branch-alias": null
-    },
-    "compile": [
-        "app/console assets:install"
-    ]
+    }
 }
