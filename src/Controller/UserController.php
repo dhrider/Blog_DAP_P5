@@ -31,7 +31,7 @@ class UserController extends Controller
             $user->setUsername($form->getData()->getUsername());
             $user->setEmail($form->getData()->getEmail());
             $user->setPassword($hash);
-            $user->setRoles(['ROLE_USER', 'ROLE_ADMIN']);
+            $user->setRoles(['ROLE_USER']);
 
             $em->persist($user);
             $em->flush();
@@ -40,8 +40,9 @@ class UserController extends Controller
 
             $session
                 ->getFlashBag()
-                ->set('success', 'You\'ve been successfully registred. 
-                You can now login with your username & password.')
+                ->set('success', 'You\'ve been successfully registred.
+                You can login but it won\'t give you access to the admin section until 
+                you receive a validation email stating your account as been validate by an administrator!')
             ;
 
             return $this->redirectToRoute('login', array(

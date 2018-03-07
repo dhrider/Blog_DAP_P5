@@ -13,7 +13,7 @@ class CommentController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $adapter = new DoctrineORMAdapter( $em->getRepository(Comment::class)->findAllComments(), false);
+        $adapter = new DoctrineORMAdapter($em->getRepository(Comment::class)->findAllComments(), false);
         $pager = new Pagerfanta($adapter);
         $pager->setMaxPerPage(10);
         $pager->setCurrentPage($page);

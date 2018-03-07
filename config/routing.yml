@@ -74,6 +74,24 @@ validationComment:
     requirements:
         id: '\d+'
 
+manageUsers:
+    path: admin/manageUsers/{page}
+    defaults: { _controller: App\Controller\Admin\UserController:manageUsersAction, page: 1 }
+    requirements:
+        page: '\d+'
+
+deleteUser:
+    path: admin/deleteUser/{id}
+    defaults: { _controller: App\Controller\Admin\UserController:deleteUserAction }
+    requirements:
+        id: '\d+'
+
+validationUser:
+    path: admin/validationUser/{id}
+    defaults: { _controller: App\Controller\Admin\UserController:validationUserAction }
+    requirements:
+        id: '\d+'
+
 login:
      path: /login
      defaults: { _controller: App\Controller\SecurityController:loginAction }

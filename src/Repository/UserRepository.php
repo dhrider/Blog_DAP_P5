@@ -18,4 +18,16 @@ class UserRepository extends EntityRepository
 
         return $qb->getQuery()->getOneOrNullResult();
     }
+
+    public function findAllUser()
+    {
+        $qb = $this->createQueryBuilder('u');
+
+        $qb
+            ->select('u')
+            ->orderBy('u.dateCreation', 'DESC')
+        ;
+
+        return $qb;
+    }
 }

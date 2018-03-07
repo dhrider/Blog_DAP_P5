@@ -210,4 +210,34 @@ class User implements UserInterface
     {
         $this->token = $token;
     }
+
+    ////////////////////////////////////////////////////////////////////////////////
+
+    public function isAdmin()
+    {
+        $admin = false;
+
+        foreach ($this->getRoles() as $role) {
+            if ($role === 'ROLE_ADMIN') {
+                $admin = true;
+            }
+        }
+
+        return $admin;
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////
+
+    public function isSuperAdmin()
+    {
+        $admin = false;
+
+        foreach ($this->getRoles() as $role) {
+            if ($role === 'ROLE_SUPER_ADMIN') {
+                $admin = true;
+            }
+        }
+
+        return $admin;
+    }
 }

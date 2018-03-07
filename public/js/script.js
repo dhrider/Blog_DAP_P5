@@ -6,4 +6,8 @@ $(document).ready(function () {
     $('#closeNewPostMessage').on('click',function () {
         $('#menuManagePost').get(0).click();
     });
+
+    $('#closeRegisteredUserMessage').on('click',function () {
+        $('#menuLogin').get(0).click();
+    });
 });

@@ -35,7 +35,7 @@
     </div>
     {% if app.request.get('success') %}
         <div class="row">
-            {% include 'messageFlash.html.twig' %}
+            {% include 'messageFlash.html.twig' with {'buttonId': 'closeRegisteredUserMessage'} %}
         </div>
     {% endif %}
 {% endblock %}
