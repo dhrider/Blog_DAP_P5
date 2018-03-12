@@ -23,6 +23,7 @@ class CommentRepository extends EntityRepository
     public function findAllComments()
     {
         $qb = $this->createQueryBuilder('c');
+
         $qb
             ->select('c')
             ->orderBy('c.dateCreation', 'DESC')
