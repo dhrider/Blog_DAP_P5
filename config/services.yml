@@ -19,6 +19,10 @@ services:
         public: true
         tags: ['controller.service_arguments']
 
+    App\DataFixtures\:
+        resource: '../src/DataFixtures'
+        tags: [doctrine.fixture.orm]
+
     contact_event_subscriber:
         class: App\EventSubscriber\ContactEventSubscriber
         arguments: ['@mailer', '@templating']
