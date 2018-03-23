@@ -20,6 +20,7 @@ class Kernel extends BaseKernel
             new \Gregwar\CaptchaBundle\GregwarCaptchaBundle(),
             new \WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
             new \Exercise\HTMLPurifierBundle\ExerciseHTMLPurifierBundle(),
+            new \Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
@@ -32,10 +33,6 @@ class Kernel extends BaseKernel
                 $bundles[] = new \Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
                 $bundles[] = new \Symfony\Bundle\WebServerBundle\WebServerBundle();
             }
-        }
-
-        if (in_array($this->getEnvironment(), ['prod'])) {
-            $bundles[] = new \Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle();
         }
 
         return $bundles;
