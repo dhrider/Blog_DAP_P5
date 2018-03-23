@@ -20,13 +20,14 @@ class Kernel extends BaseKernel
             new \Gregwar\CaptchaBundle\GregwarCaptchaBundle(),
             new \WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
             new \Exercise\HTMLPurifierBundle\ExerciseHTMLPurifierBundle(),
+            new \Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
             $bundles[] = new \Symfony\Bundle\DebugBundle\DebugBundle();
             $bundles[] = new \Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new \Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
-            $bundles[] = new \Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle();
+            //$bundles[] = new \Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle();
 
             if ('dev' === $this->getEnvironment()) {
                 $bundles[] = new \Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();

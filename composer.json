@@ -32,10 +32,10 @@
         "twig/extensions": "^1.4",
         "twig/twig": "^1.0||^2.0",
         "white-october/pagerfanta-bundle": "^1.1",
-        "exercise/htmlpurifier-bundle": "*"
+        "exercise/htmlpurifier-bundle": "*",
+        "doctrine/doctrine-fixtures-bundle": "^3.0"
     },
     "require-dev": {
-        "doctrine/doctrine-fixtures-bundle": "^3.0",
         "sensio/generator-bundle": "^3.0",
         "symfony/phpunit-bridge": "^3.0"
     },
