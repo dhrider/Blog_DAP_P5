@@ -34,6 +34,10 @@ class Kernel extends BaseKernel
             }
         }
 
+        if (in_array($this->getEnvironment(), ['prod'])) {
+            $bundles[] = new \Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle();
+        }
+
         return $bundles;
     }
 
