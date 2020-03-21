@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use App\Form\Type\ContactType;
 use App\Event\ContactEvent;
@@ -9,10 +10,8 @@ use App\Entity\Contact;
 
 class ContactController extends Controller
 {
-    public function contactAction()
+    public function contactAction(EntityManagerInterface $entityManager)
     {
-        $em = $this->getDoctrine()->getManager();
-
         $contact = new Contact();
 
         $form = $this->createForm(ContactType::class, $contact);
@@ -28,8 +27,8 @@ class ContactController extends Controller
 
             $this->get('event_dispatcher')->dispatch(ContactEvent::CONTACT_SEND, $contactEvent);
 
-            $em->persist($contact);
-            $em->flush();
+            $entityManager->persist($contact);
+            $entityManager->flush();
 
             // message envoyé
             $success = true;

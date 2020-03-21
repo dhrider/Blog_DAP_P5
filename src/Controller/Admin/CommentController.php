@@ -3,17 +3,17 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Comment;
+use App\Repository\CommentRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Pagerfanta\Pagerfanta;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 
 class CommentController extends Controller
 {
-    public function manageCommentsAction($page)
+    public function manageCommentsAction($page, CommentRepository $commentRepository)
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $adapter = new DoctrineORMAdapter($em->getRepository(Comment::class)->findAllComments(), false);
+        $adapter = new DoctrineORMAdapter($commentRepository->findAllComments(), false);
         $pager = new Pagerfanta($adapter);
         $pager->setMaxPerPage(10);
         $pager->setCurrentPage($page);
@@ -23,27 +23,23 @@ class CommentController extends Controller
         ));
     }
 
-    public function deleteCommentAction(Comment $comment)
+    public function deleteCommentAction(Comment $comment, EntityManagerInterface $entityManager, CommentRepository $commentRepository)
     {
-        $em = $this->getDoctrine()->getManager();
+        $commentToDelete = $commentRepository->find($comment->getId());
 
-        $commentToDelete = $em->getRepository(Comment::class)->find($comment->getId());
-
-        $em->remove($commentToDelete);
-        $em->flush();
+        $entityManager->remove($commentToDelete);
+        $entityManager->flush();
 
         return $this->redirectToRoute('manageComments');
     }
 
-    public function validationCommentAction(Comment $comment)
+    public function validationCommentAction(Comment $comment, EntityManagerInterface $entityManager)
     {
-        $em = $this->getDoctrine()->getManager();
-
         $comment->setValidate(true);
         $comment->setDateValidate(new \DateTime());
 
-        $em->persist($comment);
-        $em->flush();
+        $entityManager->persist($comment);
+        $entityManager->flush();
 
         return $this->redirectToRoute('manageComments');
     }

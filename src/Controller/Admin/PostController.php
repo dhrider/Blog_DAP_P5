@@ -2,6 +2,8 @@
 
 namespace App\Controller\Admin;
 
+use App\Repository\PostRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Post;
@@ -11,10 +13,8 @@ use Pagerfanta\Adapter\DoctrineORMAdapter;
 
 class PostController extends Controller
 {
-    public function newPostAction(Request $request)
+    public function newPostAction(Request $request, EntityManagerInterface $entityManager)
     {
-        $em = $this->getDoctrine()->getManager();
-
         $post = new Post();
 
         $form = $this->createForm(PostType::class, $post);
@@ -22,8 +22,8 @@ class PostController extends Controller
         $success = false;
 
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
-            $em->persist($post);
-            $em->flush();
+            $entityManager->persist($post);
+            $entityManager->flush();
 
             $success = true;
 
@@ -41,17 +41,15 @@ class PostController extends Controller
         ));
     }
 
-    public function updatePostAction(Post $post, Request $request)
+    public function updatePostAction(Post $post, Request $request, EntityManagerInterface $entityManager)
     {
-        $em = $this->getDoctrine()->getManager();
-
         $form = $this->createForm(PostType::class, $post);
 
         if($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
             $post->setDateLastModification(new \DateTime());
 
-            $em->persist($post);
-            $em->flush();
+            $entityManager->persist($post);
+            $entityManager->flush();
 
             return $this->redirectToRoute('managePosts');
         }
@@ -61,11 +59,9 @@ class PostController extends Controller
         ));
     }
 
-    public function managePostsAction($page)
+    public function managePostsAction($page, PostRepository $postRepository)
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $adapter = new DoctrineORMAdapter( $em->getRepository(Post::class)->findAllPostsDescending(), false);
+        $adapter = new DoctrineORMAdapter($postRepository->findAllPostsDescending(), false);
         $pager = new Pagerfanta($adapter);
         $pager->setMaxPerPage(5);
         $pager->setCurrentPage($page);
@@ -75,14 +71,12 @@ class PostController extends Controller
         ));
     }
 
-    public function deletePostAction(Post $post)
+    public function deletePostAction(Post $post, EntityManagerInterface $entityManager, PostRepository $postRepository)
     {
-        $em = $this->getDoctrine()->getManager();
+        $postToDelete = $postRepository->find($post->getId());
 
-        $postToDelete = $em->getRepository(Post::class)->find($post->getId());
-
-        $em->remove($postToDelete);
-        $em->flush();
+        $entityManager->remove($postToDelete);
+        $entityManager->flush();
 
         return $this->redirectToRoute('managePosts');
     }

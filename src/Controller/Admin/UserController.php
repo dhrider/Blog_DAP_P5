@@ -3,17 +3,17 @@
 namespace App\Controller\Admin;
 
 use App\Entity\User;
+use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Pagerfanta\Pagerfanta;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 
 class UserController extends Controller
 {
-    public function manageUsersAction($page)
+    public function manageUsersAction($page, UserRepository $userRepository)
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $adapter = new DoctrineORMAdapter($em->getRepository(User::class)->findAllUser(), false);
+        $adapter = new DoctrineORMAdapter($userRepository->findAllUser(), false);
         $pager = new Pagerfanta($adapter);
         $pager->setMaxPerPage(10);
         $pager->setCurrentPage($page);
@@ -23,26 +23,22 @@ class UserController extends Controller
         ));
     }
 
-    public function deleteUserAction(User $user)
+    public function deleteUserAction(User $user, UserRepository $userRepository, EntityManagerInterface $entityManager)
     {
-        $em = $this->getDoctrine()->getManager();
+        $userToDelete = $userRepository->find($user->getId());
 
-        $userToDelete = $em->getRepository(User::class)->find($user->getId());
-
-        $em->remove($userToDelete);
-        $em->flush();
+        $entityManager->remove($userToDelete);
+        $entityManager->flush();
 
         return $this->redirectToRoute('manageUsers');
     }
 
-    public function validationUserAction(User $user, \Swift_Mailer $mailer)
+    public function validationUserAction(User $user, EntityManagerInterface $entityManager, \Swift_Mailer $mailer)
     {
-        $em = $this->getDoctrine()->getManager();
-
         $user->setRoles(['ROLE_USER', 'ROLE_ADMIN']);
 
-        $em->persist($user);
-        $em->flush();
+        $entityManager->persist($user);
+        $entityManager->flush();
 
         $date = new \DateTime();
 

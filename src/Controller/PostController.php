@@ -5,6 +5,9 @@ namespace App\Controller;
 use App\Entity\Comment;
 use App\Entity\Post;
 use App\Form\Type\CommentType;
+use App\Repository\CommentRepository;
+use App\Repository\PostRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Pagerfanta\Pagerfanta;
@@ -12,12 +15,10 @@ use Pagerfanta\Adapter\DoctrineORMAdapter;
 
 class PostController extends Controller
 {
-    public function listPostsAction($page)
+    public function listPostsAction($page, PostRepository $postRepository)
     {
-        $em = $this->getDoctrine()->getManager();
-
         // gestion de la pagination
-        $adapter = new DoctrineORMAdapter($em->getRepository(Post::class)->findAllPostsDescending(), false);
+        $adapter = new DoctrineORMAdapter($postRepository->findAllPostsDescending(), false);
         $pager = new Pagerfanta($adapter);
         $pager->setMaxPerPage(4);
         $pager->setCurrentPage($page);
@@ -27,11 +28,9 @@ class PostController extends Controller
         ));
     }
 
-    public function singlePostAction(Post $post, Request $request)
+    public function singlePostAction(Post $post, Request $request, EntityManagerInterface $entityManager, CommentRepository $commentRepository)
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $comments = $em->getRepository(Comment::class)->findCommentsByPostId($post->getId());
+        $comments = $commentRepository->findCommentsByPostId($post->getId());
 
         $comment = new Comment();
 
@@ -42,8 +41,8 @@ class PostController extends Controller
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
             $comment->setPost($post);
 
-            $em->persist($comment);
-            $em->flush();
+            $entityManager->persist($comment);
+            $entityManager->flush();
 
             $success = true;
 
