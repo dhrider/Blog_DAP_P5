@@ -11,8 +11,9 @@ use Pagerfanta\Adapter\DoctrineORMAdapter;
 
 class CommentController extends Controller
 {
-    public function manageCommentsAction($page, CommentRepository $commentRepository)
+    public function manageCommentsAction($page, EntityManagerInterface $entityManager)
     {
+        $commentRepository = $entityManager->getRepository(Comment::class);
         $adapter = new DoctrineORMAdapter($commentRepository->findAllComments(), false);
         $pager = new Pagerfanta($adapter);
         $pager->setMaxPerPage(10);
@@ -23,8 +24,9 @@ class CommentController extends Controller
         ));
     }
 
-    public function deleteCommentAction(Comment $comment, EntityManagerInterface $entityManager, CommentRepository $commentRepository)
+    public function deleteCommentAction(Comment $comment, EntityManagerInterface $entityManager)
     {
+        $commentRepository = $entityManager->getRepository(Comment::class);
         $commentToDelete = $commentRepository->find($comment->getId());
 
         $entityManager->remove($commentToDelete);

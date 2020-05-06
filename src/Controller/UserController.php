@@ -45,10 +45,10 @@ class UserController extends Controller
         ));
     }
 
-    public function recoveryUsernameUserAction(Request $request, \Swift_Mailer $mailer, UserRepository $userRepository)
+    public function recoveryUsernameUserAction(Request $request, \Swift_Mailer $mailer, EntityManagerInterface $entityManager)
     {
         if ($request->isMethod('POST')) {
-            $user = $userRepository->findByEmail($request->request->get('email'));
+            $user = $entityManager->getRepository(User::class)->findByEmail($request->request->get('email'));
             $session = $this->container->get('session');
             if ($user) {
                 $date = new \DateTime();
@@ -72,10 +72,10 @@ class UserController extends Controller
         return $this->render('User/recoveryUsernameUser.html.twig');
     }
 
-    public function resetPasswordUserAction(Request $request, \Swift_Mailer $mailer, UserRepository $userRepository, EntityManagerInterface $entityManager)
+    public function resetPasswordUserAction(Request $request, \Swift_Mailer $mailer, EntityManagerInterface $entityManager)
     {
         if ($request->isMethod('POST')) {
-            $user = $userRepository->findByEmail($request->request->get('email'));
+            $user = $entityManager->getRepository(User::class)->findByEmail($request->request->get('email'));
             $session = $this->container->get('session');
             if ($user) {
                 $user->setToken(hash("sha512", uniqid()));
@@ -103,9 +103,9 @@ class UserController extends Controller
         return $this->render('User/resetPasswordUser.html.twig');
     }
 
-    public function newPasswordUserAction(User $user, Request $request, EntityManagerInterface $entityManager, UserRepository $userRepository)
+    public function newPasswordUserAction(User $user, Request $request, EntityManagerInterface $entityManager)
     {
-        $userExist = $userRepository->findOneBy(array("token" => $user->getToken()));
+        $userExist = $entityManager->getRepository(User::class)->findOneBy(array("token" => $user->getToken()));
         $form =$this->createForm(PasswordResetType::class, $user);
         $session = $this->container->get('session');
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
