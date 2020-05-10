@@ -5,11 +5,12 @@ namespace App\Controller\Admin;
 use App\Entity\Comment;
 use App\Repository\CommentRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Pagerfanta\Pagerfanta;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 
-class CommentController extends Controller
+class CommentController extends AbstractController
 {
     public function manageCommentsAction($page, EntityManagerInterface $entityManager)
     {

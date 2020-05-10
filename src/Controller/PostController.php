@@ -5,20 +5,19 @@ namespace App\Controller;
 use App\Entity\Comment;
 use App\Entity\Post;
 use App\Form\Type\CommentType;
-use App\Repository\CommentRepository;
 use App\Repository\PostRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Pagerfanta\Pagerfanta;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 
-class PostController extends Controller
+class PostController extends AbstractController
 {
-    public function listPostsAction($page, EntityManagerInterface $entityManager)
+    public function listPostsAction($page, PostRepository $postRepository)
     {
         // gestion de la pagination
-        $postRepository = $entityManager->getRepository(Post::class)->findAllPostsDescending();
+        $postRepository = $postRepository->findAllPostsDescending();
         $adapter = new DoctrineORMAdapter($postRepository, false);
         $pager = new Pagerfanta($adapter);
         $pager->setMaxPerPage(4);

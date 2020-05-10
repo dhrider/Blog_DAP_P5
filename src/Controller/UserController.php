@@ -5,12 +5,11 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\Type\PasswordResetType;
 use App\Form\Type\UserType;
-use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 
-class UserController extends Controller
+class UserController extends AbstractController
 {
     public function registerUserAction(Request $request, EntityManagerInterface $entityManager)
     {

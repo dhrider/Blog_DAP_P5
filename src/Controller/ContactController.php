@@ -3,14 +3,15 @@
 namespace App\Controller;
 
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Form\Type\ContactType;
 use App\Event\ContactEvent;
 use App\Entity\Contact;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
-class ContactController extends Controller
+class ContactController extends AbstractController
 {
-    public function contactAction(EntityManagerInterface $entityManager)
+    public function contactAction(EntityManagerInterface $entityManager, EventDispatcherInterface $eventDispatcher)
     {
         $contact = new Contact();
 
@@ -25,7 +26,7 @@ class ContactController extends Controller
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
             $contactEvent = new ContactEvent($contact);
 
-            $this->get('event_dispatcher')->dispatch(ContactEvent::CONTACT_SEND, $contactEvent);
+            $eventDispatcher->dispatch($contactEvent, ContactEvent::CONTACT_SEND);
 
             $entityManager->persist($contact);
             $entityManager->flush();

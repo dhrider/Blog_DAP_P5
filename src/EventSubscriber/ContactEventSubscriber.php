@@ -3,15 +3,15 @@
 namespace App\EventSubscriber;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Bundle\TwigBundle\TwigEngine;
 use App\Event\ContactEvent;
+use Twig\Environment;
 
 class ContactEventSubscriber implements EventSubscriberInterface
 {
     private $mailer;
     private $twigEngine;
 
-    public function __construct(\Swift_Mailer $mailer, TwigEngine $twigEngine)
+    public function __construct(\Swift_Mailer $mailer, Environment $twigEngine)
     {
         $this->mailer = $mailer;
         $this->twigEngine = $twigEngine;

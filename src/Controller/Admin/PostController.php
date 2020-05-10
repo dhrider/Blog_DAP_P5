@@ -4,14 +4,14 @@ namespace App\Controller\Admin;
 
 use App\Repository\PostRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Post;
 use App\Form\Type\PostType;
 use Pagerfanta\Pagerfanta;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 
-class PostController extends Controller
+class PostController extends AbstractController
 {
     public function newPostAction(Request $request, EntityManagerInterface $entityManager)
     {

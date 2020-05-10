@@ -2,9 +2,9 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class HomeController extends Controller
+class HomeController extends AbstractController
 {
     public function homeAction()
     {

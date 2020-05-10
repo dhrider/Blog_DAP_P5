@@ -34,7 +34,7 @@ class ContactType extends AbstractType
             ))
             ->add('email', RepeatedType::class, array(
                 'type' => EmailType::class,
-                'invalid_message' => 'The emails are not the same !',
+//                'invalid_message' => 'The emails are not the same !',
                 'first_options' => array(
                     'label' => false,
                     'attr' => array(

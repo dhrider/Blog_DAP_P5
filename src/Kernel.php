@@ -2,40 +2,26 @@
 
 namespace App;
 
+use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
+use Symfony\Component\Config\Resource\FileResource;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Kernel as BaseKernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
+use Symfony\Component\Routing\RouteCollectionBuilder;
 
 class Kernel extends BaseKernel
 {
+    use MicroKernelTrait;
+    private const CONFIG_EXTS = '.{php,xml,yaml,yml}';
+
     public function registerBundles()
     {
-        $bundles = [
-            new \Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
-            new \Symfony\Bundle\SecurityBundle\SecurityBundle(),
-            new \Symfony\Bundle\TwigBundle\TwigBundle(),
-            new \Symfony\Bundle\MonologBundle\MonologBundle(),
-            new \Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
-            new \Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
-            new \Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
-            new \Gregwar\CaptchaBundle\GregwarCaptchaBundle(),
-            new \WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
-            new \Exercise\HTMLPurifierBundle\ExerciseHTMLPurifierBundle(),
-            new \Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
-        ];
-
-        if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
-            $bundles[] = new \Symfony\Bundle\DebugBundle\DebugBundle();
-            $bundles[] = new \Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
-            $bundles[] = new \Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
-            //$bundles[] = new \Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle();
-
-            if ('dev' === $this->getEnvironment()) {
-                $bundles[] = new \Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
-                $bundles[] = new \Symfony\Bundle\WebServerBundle\WebServerBundle();
+        $contents = require $this->getProjectDir().'/config/bundles.php';
+        foreach ($contents as $class => $envs) {
+            if ($envs[$this->environment] ?? $envs['all'] ?? false) {
+                yield new $class();
             }
         }
-
-        return $bundles;
     }
 
     public function getRootDir()
@@ -53,8 +39,25 @@ class Kernel extends BaseKernel
         return dirname(__DIR__) . '/var/logs';
     }
 
-    public function registerContainerConfiguration(LoaderInterface $loader)
+    protected function configureContainer(ContainerBuilder $container, LoaderInterface $loader): void
     {
-        $loader->load($this->getProjectDir() . '/config/config_' . $this->getEnvironment() . '.yml');
+        $container->addResource(new FileResource($this->getProjectDir().'/config/bundles.php'));
+        $container->setParameter('container.dumper.inline_class_loader', \PHP_VERSION_ID < 70400 || !ini_get('opcache.preload'));
+        $container->setParameter('container.dumper.inline_factories', true);
+        $confDir = $this->getProjectDir().'/config';
+
+        $loader->load($confDir.'/{packages}/*'.self::CONFIG_EXTS, 'glob');
+        $loader->load($confDir.'/{packages}/'.$this->environment.'/*'.self::CONFIG_EXTS, 'glob');
+        $loader->load($confDir.'/{services}'.self::CONFIG_EXTS, 'glob');
+        $loader->load($confDir.'/{services}_'.$this->environment.self::CONFIG_EXTS, 'glob');
+    }
+
+    protected function configureRoutes(RouteCollectionBuilder $routes): void
+    {
+        $confDir = $this->getProjectDir().'/config';
+
+        $routes->import($confDir.'/{routes}/'.$this->environment.'/*'.self::CONFIG_EXTS, '/', 'glob');
+        $routes->import($confDir.'/{routes}/*'.self::CONFIG_EXTS, '/', 'glob');
+        $routes->import($confDir.'/{routes}'.self::CONFIG_EXTS, '/', 'glob');
     }
 }
